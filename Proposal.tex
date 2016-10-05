@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\title{Twitter Bot with Genetic Algorithm for Tweet Optimization}
+\author{Ankit Kumar(akumar18), Anand Purohit(apurohi)}
+\date{}
+\begin{document}
+    \maketitle
+
+    \section{Project}
+        \subsection{Introduction}
+        There are various kinds of twitter bots out on the web. Some use grammars to generate tweets, while other are much more sophisticated and use machine learning to learn natural language and tweet generation. While machine learning provides a big advantage of allowing more constraints and shaping the tweets in a better way, grammars provide an easier way to generate tweets.
+        The main problem here is that grammars are too simple to design a bot which can deal well with the linguistic complexities, while keeping the context relevant, and machine learning is an approach too complex to implement as well expensive in terms of the time spent to train such a bot. We need a way to overcome these challenges, and find ways to design a bot, which is not too complex and also generates "good" tweets.
+
+        \subsection{Background}
+        Tracery: 
+        \newline
+        Genetic Algorithms:
+        
+
+        \subsection{Gap}
+        Various twitter bots these days generate tweets, through simple grammars, using tools such as tracery. The problem with these tweets is that, it is very difficult to design a grammar, which generates tweets which are not obeys the linguistic rules of english, but also generates contextually relevant tweets.
+        On the other hand, machine learning overcomes these constraints, but is much more complex to implement. Furthermore, the training time for a bot to have enough knowledge to be able to generate "good" tweets, is really high.
+
+        \subsection{Approach}
+        Our aim here, is to design a twitter bot, which generates tweets using a simple grammar, and then evolves that tweet by use genetic algorithm and a repo of old tweets. Due to the enormous number of domains and possibilites, we would limit ourselves to a particular domain only, for out project.
+
+        \subsection{Payoff}
+        The aim of this project is to design a simple enough twitter bot, which can address the complexities of the language as well as maintain the context of the tweet.
+
+    \section{Work Plan}
+        \subsection{Tools}
+        \begin{itemize}
+            \item Tracery
+            \item Python
+            \item Twitter Bot API
+            \item JavaScript
+        \end{itemize}
+
+        \subsection{Deliverables}
+        The deliverables for this project include:
+        \begin{itemize}
+            \item Twitter Bot (Deployed)
+            \item Code
+            \item Documentation
+        \end{itemize}
+
+        \subsection{Work Division}
+        We have tried to divide the work evenly, however if needed , we would re-balance the work load accordingly.
+        \begin{itemize}
+            \item Ankit Kumar: \textit Implementing genetic algorithm for comparing old tweets to the newly generated tweets for opimization.
+            \item Anand Purohit: \textit Implementing a tweet generator using tracery and context free grammars.
+        \end{itemize}
+        
+        \subsection{Timeline}
+        Our timeline is designed as below:
+        \begin{itemize}
+            \item Weeks 1-2: Getting acquainted with tracery, grammars, genetic algorithms and other basics required for this project. Also involves data collection for tweet optimization.
+            \item Weeks 3-4: Generating simple tweets, and developing a decoupled genetic algorithm for tweet analysis.
+            \item Week 5-6: Combining tweet generator with genetic algorithm for tweet optimization, and posting the tweets to twitter (Twitter API).
+            \item Week 7-8: Evaluating the quality of tweets, improving the tweet generation process and analyzing the outcome of our project.
+        \end{itemize}
+
+        \subsection{Evaluation}
+        We have 4 basic milestones and a stretch milestone in our mind, and hence beleive each of these can work as a grade level
+        \begin{itemize}
+            \item D: Simple tweet generater, using grammars.
+            \item C: Improved tweet generator, that uses grammars and generates tweets having proper structure (linguistic).
+            \item B: Improved tweet generator to generate good relevant tweets, having proper meaning and structure.
+            \item A: Tweet generator coupled feeding to genetic algorithm for optimization.
+            \item A+: "Good" tweets generated from out twitter bot. Includes evaluation of the quality of tweet. 
+        \end{itemize}
+\end{document}

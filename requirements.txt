@@ -1,0 +1,2 @@
+pymongo==3.3.1
+tweetpy==0.1

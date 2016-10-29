@@ -63,5 +63,5 @@ class TweetDB:
 
         data = self.authors.find({"id" : id})
         if data is None:
-            self.logger.warning("Author (%s) Not Found" % (id,))
+            self.logger.warning("Author (%d) Not Found" % (id,))
         return data

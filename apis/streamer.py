@@ -16,4 +16,5 @@ class StreamListener(tweetpy.StreamListener):
     '''
 
     def on_status(self, status):
+        # On Data Logic!
         print(status)

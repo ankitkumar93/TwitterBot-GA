@@ -38,7 +38,7 @@ def mkArgs():
     fetch_parser.set_defaults(func=fetch_tweets)
 
     # tweet generate subparser
-    generator_parser = subparsers.add_parser('generator', 
+    generator_parser = subparsers.add_parser('generate', 
                                           help='generate new tweets')
     generator_parser.set_defaults(func=gen_tweets)
 
@@ -47,8 +47,10 @@ def mkArgs():
     logger = logging.getLogger()
     if args.loglevel:
         level = args.loglevel.lower()
-        assert level in 'dwc', 'invalid log level'
-        if level == 'd':
+        assert level in 'dwic', 'invalid log level'
+        if level == 'i':
+            logger.setLevel(logging.INFO)
+        elif level == 'd':
             logger.setLevel(logging.DEBUG)
         elif level == 'w':
             logger.setLevel(logging.WARNING)
@@ -88,5 +90,5 @@ def main():
     else:
         parser.error("Please select a command!")
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     main()

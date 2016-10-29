@@ -20,10 +20,8 @@ def mkArgs():
     parser = argparse.ArgumentParser(description=__doc__)
 
     # define parser's options
-    parser.add_argument('-D', '--debug', action="count",
+    parser.add_argument('-d', '--debug', action="count",
                         help='set debug level')
-    parser.add_argument('-v', '--verbose', action="count",
-                        help='set verbose level')
     parser.add_argument('-l', '--logfile', type=str, default='-',
                         help='set log file (default stdin "-")')
     parser.add_argument('-L', '--loglevel', type=str, default='i',
@@ -48,9 +46,7 @@ def mkArgs():
     if args.loglevel:
         level = args.loglevel.lower()
         assert level in 'dwic', 'invalid log level'
-        if level == 'i':
-            logger.setLevel(logging.INFO)
-        elif level == 'd':
+        if level == 'd':
             logger.setLevel(logging.DEBUG)
         elif level == 'w':
             logger.setLevel(logging.WARNING)
@@ -59,8 +55,6 @@ def mkArgs():
 
     if args.debug:
         logger.setLevel(logging.DEBUG)
-    else:
-        logger.setLevel(logging.INFO)
 
     if args.logfile == '-':
         hdlr = logging.StreamHandler()

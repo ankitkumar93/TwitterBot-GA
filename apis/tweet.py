@@ -10,9 +10,9 @@ class TweetHelper:
     Tweet Helper class (Wrapper methods to do stuff with Tweepy)
     '''
 
-    def __init__(self, logger):
-        self.logger = logger
-        key = json.load(open('key.json'))
+    def __init__(self, args):
+        self.logger = args['logger']
+        key = json.load(open(args['keyPath']))
         self.auth = tweepy.OAuthHandler(key['consumer_key'], key['consumer_secret'])
         self.auth.set_access_token(key['access_token'], key['access_secret'])
         self.api = tweepy.API(self.auth)
@@ -48,7 +48,7 @@ class TweetHelper:
         return status.user
 
     def get_followers_count(self, user):
-        self.logger.debug("Getting followers count from user with screen name: %s" % user.screen_name)
+        # self.logger.debug("Getting followers count from user with screen name: %s" % user.screen_name)
         return user.followers_count
 
     def get_followers_count_from_user_id(self, id):
@@ -58,11 +58,11 @@ class TweetHelper:
         return user
 
     def get_users_who_mentioned_keyword(self, search_keyword):
-        self.logger.debug("Fetching tweets for the keyword: %s" % search_keyword)
+        # self.logger.debug("Fetching tweets for the keyword: %s" % search_keyword)
         users = set()
         for tweet in tweepy.Cursor(self.api.search, q=search_keyword, count=100).items(100):
             users.add(tweet.user)
-        self.logger.debug("Results fetched successfully for keyword: %s" % search_keyword)
+        # self.logger.debug("Results fetched successfully for keyword: %s" % search_keyword)
         return users
 
 

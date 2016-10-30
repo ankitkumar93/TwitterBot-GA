@@ -1,4 +1,4 @@
 {
     "tweets_count" : 1000,
-    "filter_threshold_low" : 0
+    "filter_threshold" : 0
 }

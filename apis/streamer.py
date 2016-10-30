@@ -1,5 +1,5 @@
 from db import TweetDB
-import tweetpy
+import tweepy
 
 '''
 Author: Ankit Kumar
@@ -9,7 +9,7 @@ Uses the Twitter API
 Defines Interface to Stream Data
 '''
 
-class StreamListener(tweetpy.StreamListener):
+class StreamListener(tweepy.StreamListener):
     '''
     Stream Listener
     Overriden to Add Logic to on_status
@@ -17,4 +17,12 @@ class StreamListener(tweetpy.StreamListener):
 
     def on_status(self, status):
         # On Data Logic!
-        print(status)
+        print(status.text)
+
+    def on_error(self, status_code):
+        # On Error
+        assert False, "Error: %d" % (status_code,)
+
+    def on_timeout(self):
+        # On Timeout
+        assert False, "Timeout..."

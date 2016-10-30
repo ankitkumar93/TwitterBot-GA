@@ -1,6 +1,8 @@
 import argparse
 import logging
 import logging.handlers
+from main.tweet_fetch import fetch_tweets
+from main.tweet_gen import gen_tweets
 
 '''
 Author: Ankit Kumar

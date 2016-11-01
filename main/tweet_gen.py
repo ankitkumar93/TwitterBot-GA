@@ -30,7 +30,8 @@ class TweetGenerator:
                                             keyPath=self.config.key_path))
         self.traceryHelper = TraceryHelper(dict(logger=self.logger))
         self.emotionHelper = EmotionHelper(dict(logger=self.logger,
-                                                emotionPath=self.config.emotion_path))
+                                                emotionPath=self.config.emotion_path,
+                                                ratingPath=self.config.ratingPath))
         self.syntax = Syntax(dict(logger=self.logger))
 
         self.filter = Filter(dict(logger=self.logger, tweetHelper=self.tweetHelper,

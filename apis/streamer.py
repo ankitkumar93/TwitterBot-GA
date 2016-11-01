@@ -1,4 +1,4 @@
-from db import TweetDB
+from db import DBHelper
 import tweepy
 
 '''

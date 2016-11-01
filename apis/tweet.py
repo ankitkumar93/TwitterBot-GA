@@ -64,11 +64,3 @@ class TweetHelper:
             users.add(tweet.user)
         # self.logger.debug("Results fetched successfully for keyword: %s" % search_keyword)
         return users
-
-
-# helper = TweetHelper(None)
-# print(helper.get_num_favorites("792639337741647872"))
-# users = helper.get_users_who_mentioned_keyword("Titanfall 2")
-# for user in users:
-#     print ("Getting followers count for %s: %d" % (user, helper.get_followers_count(user)))
-# print(helper.get_num_retweets("792639337741647872"))

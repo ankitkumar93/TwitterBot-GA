@@ -14,4 +14,5 @@ class Syntax:
         self.dbHelper = new DBHelper(dict(logger=self.logger))
 
     def get_syntax(self):
+        self.logger.debug("Getting Syntax!");
         return self.dbHelper.get_syntax()

@@ -3,5 +3,6 @@
     "filter_threshold" : 150000,
     "key_path": "../apis/key.json",
     "user_path": "../apis/user.json",
-    "emotion_path": "../apis/emotion.json"
+    "emotion_path": "../apis/emotion.json",
+    "grammar_path": "../apis/grammar.json"
 }

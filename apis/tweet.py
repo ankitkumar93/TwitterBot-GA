@@ -11,8 +11,8 @@ class TweetHelper:
     '''
 
     def __init__(self, args):
-        self.logger = args['logger']
-        key = json.load(open(args['keyPath']))
+        self.logger = args.logger
+        key = json.load(open(args.keyPath))
         self.auth = tweepy.OAuthHandler(key['consumer_key'], key['consumer_secret'])
         self.auth.set_access_token(key['access_token'], key['access_secret'])
         self.api = tweepy.API(self.auth)
@@ -64,11 +64,3 @@ class TweetHelper:
             users.add(tweet.user)
         # self.logger.debug("Results fetched successfully for keyword: %s" % search_keyword)
         return users
-
-
-# helper = TweetHelper(None)
-# print(helper.get_num_favorites("792639337741647872"))
-# users = helper.get_users_who_mentioned_keyword("Titanfall 2")
-# for user in users:
-#     print ("Getting followers count for %s: %d" % (user, helper.get_followers_count(user)))
-# print(helper.get_num_retweets("792639337741647872"))

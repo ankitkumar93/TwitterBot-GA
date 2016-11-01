@@ -41,6 +41,9 @@ def mkArgs():
     generator_parser = subparsers.add_parser('generate', 
                                           help='generate new tweets')
     generator_parser.set_defaults(func=gen_tweets)
+    generator_parser.add_argument('-c', '--config', type=str,
+                                   default='config.json', 
+                                   help='provide config file')
 
     args = parser.parse_args()
 

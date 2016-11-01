@@ -7,7 +7,7 @@ The DB is NoSQL (MongoDB)
 Defines SCRUD Functions and Schemas for Collections
 '''
 
-class TweetDB:
+class DBHelper:
     '''
     Database API Class
     '''

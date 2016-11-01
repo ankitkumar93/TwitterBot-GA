@@ -1,5 +1,0 @@
-{
-    "tweets_count" : 1000,
-    "filter_threshold" : 150000,
-    "key_path": "../apis/key.json"
-}

@@ -13,9 +13,9 @@ class Filter:
     '''
 
     def __init__(self, args):
-        self.logger = args['logger']
-        self.tweetHelper = args['tweetHelper']
-        self.filterThreshold = args['filterThreshold']
+        self.logger = args.logger
+        self.tweetHelper = args.tweetHelper
+        self.filterThreshold = args.filterThreshold
 
     def calc_score_for_keyword(self, keyword):
         users = self.tweetHelper.get_users_who_mentioned_keyword(keyword)
@@ -26,14 +26,11 @@ class Filter:
 
     def filter_from_list(self, keywordList):
         filteredKeywords = list()
+        count = 0
         for keyword in keywordList:
             score = self.calc_score_for_keyword(keyword)
             if score < self.filterThreshold:
                 filteredKeywords.append(keyword)
+                count ++
 
-        return filteredKeywords
-
-config = json.load(open('config.json'))
-helper = TweetHelper({"logger": None, "keyPath": config['key_path']})
-filter = Filter({"logger": None, "tweetHelper": helper, "filterThreshold": config['filter_threshold']})
-filter.calc_score_for_keyword("Titanfall 2")
+        return count, filteredKeywords

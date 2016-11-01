@@ -20,7 +20,7 @@ class TweetGenerator:
         self.logger = args.logger
         self.logger.debug("Initializing Tweet Generator!");
 
-        config = json.load(open("config.json"));
+        config = json.load(open(args.config));
 
         self.tweetHelper = TweetHelper(dict(logger=self.logger, keyPath=config.key_path))
         self.filter = Filter(dict(logger=self.logger, tweetHelper=tweetHelper, filterThreshold=config.filter_threshold))
@@ -39,7 +39,7 @@ class TweetGenerator:
         
         # Get Tweet
         self.logger.debug("Generating Tweet!")
-        tweetToPost = self.traceryHelper(gameInfo)
+        tweetToPost = self.traceryHelper.gen_sentence(gameInfo)
 
         # Post Tweet
         self.logger.debug("Posting Tweet!")

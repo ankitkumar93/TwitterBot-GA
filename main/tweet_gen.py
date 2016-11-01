@@ -3,10 +3,10 @@ import random
 
 from apis.tweet import TweetHelper
 from apis.tracery_api import TraceryHelper
-from apis.grammar import GrammarHelper
 from apis.emotion import EmotionHelper
 from population.selector import Selector
 from population.filter import Filter
+from population.syntax import Syntax
 
 '''
 Author: Ankit Kumar
@@ -31,7 +31,7 @@ class TweetGenerator:
         self.traceryHelper = TraceryHelper(dict(logger=self.logger))
         self.emotionHelper = EmotionHelper(dict(logger=self.logger,
                                                 emotionPath=self.config.emotion_path))
-        self.grammarHelper = GrammarHelper(dict(logger=self.logger))
+        self.syntax = Syntax(dict(logger=self.logger))
 
         self.filter = Filter(dict(logger=self.logger, tweetHelper=self.tweetHelper,
                                   filterThreshold=self.config.filter_threshold))
@@ -54,13 +54,13 @@ class TweetGenerator:
         game_name = gameInfo.name
 
         # Get Grammar
-        grammar = self.grammarHelper.get_grammar()
+        syntax = self.syntax.get_syntax()
 
         # Get Tweet
         self.logger.debug("Generating Tweet!")
         tweetToPost = self.traceryHelper.gen_sentence(dict(game_name=game_name,
                                                            emotion=emotion,
-                                                           grammar=grammar))
+                                                           syntax=syntax))
 
         # Post Tweet
         self.logger.debug("Posting Tweet!")

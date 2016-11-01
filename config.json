@@ -1,0 +1,7 @@
+{
+    "games_selection_count" : 10,
+    "filter_threshold" : 150000,
+    "key_path": "../apis/key.json",
+    "user_path": "../apis/user.json",
+    "emotion_path": "../apis/emotion.json"
+}

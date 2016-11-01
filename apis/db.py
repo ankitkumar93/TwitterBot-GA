@@ -33,6 +33,10 @@ class DBHelper:
         if self.authors is None:
             self.logger.debug("Cannot Find Collection for Authors!")
 
+        self.syntax = self.db['syntax']
+        if self.syntax is None:
+            self.logger.debug("Cannot Find Collection for Syntaxses!")
+
     # Tweets
     def add_tweet(self, data):
         # Add a new Tweet
@@ -65,3 +69,8 @@ class DBHelper:
         if data is None:
             self.logger.warning("Author (%d) Not Found" % (id,))
         return data
+
+    # Syntax
+    def get_syntax(self):
+        # Return One Syntax
+        self.syntax.find()

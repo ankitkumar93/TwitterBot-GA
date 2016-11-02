@@ -43,7 +43,7 @@ class TweetGenerator:
         self.logger.debug("Starting Generation!")
 
         # Get Game
-        self.logger.debug("Getting Game!")
+        self.logger.debug("Getting Data!")
         basicGames = self.selector.select(self.config.games_selection_count)
         count, filteredGames = self.filter.filter_from_list(basicGames)
         index = random.randInt(0, count - 1)

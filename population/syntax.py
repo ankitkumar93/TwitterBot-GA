@@ -15,4 +15,6 @@ class Syntax:
 
     def get_syntax(self):
         self.logger.debug("Getting Syntax!");
-        return self.dbHelper.get_syntax()
+        syntaxes = self.dbHelper.get_syntax()
+        syntaxList = [s['data'] for s in syntaxes]
+        return syntaxList

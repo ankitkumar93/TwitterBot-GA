@@ -28,9 +28,9 @@ class Filter:
         filteredKeywords = list()
         count = 0
         for keyword in keywordList:
-            score = self.calc_score_for_keyword(keyword)
+            score = self.calc_score_for_keyword(keyword.name)
             if score < self.filterThreshold:
                 filteredKeywords.append(keyword)
-                count ++
+                count += 1
 
         return count, filteredKeywords

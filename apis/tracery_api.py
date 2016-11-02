@@ -21,17 +21,17 @@ class TraceryHelper:
     def load_grammar(self):
         return tracery.Grammar(self.grammar_json)
 
-    def gen_emotional_word(self, emotion):
-        # TODO: Use emotion to find suitable words from NLTK using synsets
-        return emotion
+    # def gen_emotional_word(self, emotion):
+    #     # TODO: Use emotion to find suitable words from NLTK using synsets
+    #     return emotion
 
     def gen_sentence(self, args):
-        game_name = args['game_name']
-        emotion = args['emotion']
-        syntax = args['syntax']
+        game_name = args.game_name
+        emotion = args.emotion
+        syntax = args.syntax
 
-        emotional_word = self.gen_emotional_word(emotion)
-        self.grammar_json['emotional_word'] = emotional_word
+        # emotional_word = self.gen_emotional_word(emotion)
+        self.grammar_json['emotional_word'] = emotion
         self.grammar_json['game_name'] = game_name
         self.grammar_json['syntax'] = syntax
 

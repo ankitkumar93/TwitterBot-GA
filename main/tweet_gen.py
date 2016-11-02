@@ -24,36 +24,40 @@ class TweetGenerator:
         self.logger = args.logger
         self.logger.debug("Initializing Tweet Generator!")
 
-        self.config = json.load(open(args.config))
+        configFile = open(args.config, 'r')
+        configData = configFile.read()
+
+        self.config = json.loads(configData)
 
         self.tweetHelper = TweetHelper(dict(logger=self.logger,
-                                            keyPath=self.config.key_path))
+                                            keyPath=str(self.config['key_path'])))
         self.traceryHelper = TraceryHelper(dict(logger=self.logger,
-                                                grammarPath=self.config.grammar_path))
+                                                grammarPath=str(self.config['grammar_path'])))
         self.emotionHelper = EmotionHelper(dict(logger=self.logger,
-                                                emotionPath=self.config.emotion_path,
-                                                ratingPath=self.config.ratingPath))
+                                                emotionPath=str(self.config['emotion_path']),
+                                                ratingPath=str(self.config['rating_path'])))
         self.syntax = Syntax(dict(logger=self.logger))
 
         self.filter = Filter(dict(logger=self.logger, tweetHelper=self.tweetHelper,
-                                  filterThreshold=self.config.filter_threshold))
-        self.selector = Selector(dict(logger=self.logger))
+                                  filterThreshold=self.config['filter_threshold']))
+        self.selector = Selector(dict(logger=self.logger, game_count=self.config['game_count']))
 
     def generate(self):
         self.logger.debug("Starting Generation!")
 
         # Get Game
         self.logger.debug("Getting Data!")
-        basicGames = self.selector.select(self.config.games_selection_count)
+        basicGames = self.selector.select()
         count, filteredGames = self.filter.filter_from_list(basicGames)
-        index = random.randInt(0, count - 1)
+        index = random.randint(0, count - 1)
         gameInfo = filteredGames[index]
 
-        # Get Emotion
-        emotion = self.emotionHelper.get_emotion(gameInfo.rating)
+        # Get Game Info
+        game_name = gameInfo['name']
+        game_rating = gameInfo['rating']
 
-        # Get Game
-        game_name = gameInfo.name
+        # Get Emotion
+        emotion = self.emotionHelper.get_emotion(game_rating)
 
         # Get Grammar
         syntax = self.syntax.get_syntax()

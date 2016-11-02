@@ -15,8 +15,8 @@ class TraceryHelper:
     Helper class to deal with PyTracery (wrapper methods to help use PyTracery)
     '''
     def __init__(self, args):
-        self.logger = args.logger
-        self.grammar_json = json.load(open(args.grammarPath))
+        self.logger = args['logger']
+        self.grammar_json = json.load(open(args['grammarPath']))
 
     def load_grammar(self):
         return tracery.Grammar(self.grammar_json)
@@ -25,9 +25,9 @@ class TraceryHelper:
     #     return emotion
 
     def gen_sentence(self, args):
-        game_name = args.game_name
-        emotion = args.emotion
-        syntax = args.syntax
+        game_name = args['game_name']
+        emotion = args['emotion']
+        syntax = args['syntax']
 
         # emotional_word = self.gen_emotional_word(emotion)
         self.grammar_json['emotional_word'] = emotion

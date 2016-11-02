@@ -1,5 +1,3 @@
 {
-	"syntax": ["#game_name# is #emotional_word.a# video game.\nI #would# recommend it", "#game_name# is #emotional_word#.\n "],
-
-    "would": ["would", "wouldn't"]
+	"would": ["would", "wouldn't"]
 }

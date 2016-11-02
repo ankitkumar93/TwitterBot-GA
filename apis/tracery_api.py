@@ -22,7 +22,6 @@ class TraceryHelper:
         return tracery.Grammar(self.grammar_json)
 
     # def gen_emotional_word(self, emotion):
-    #     # TODO: Use emotion to find suitable words from NLTK using synsets
     #     return emotion
 
     def gen_sentence(self, args):

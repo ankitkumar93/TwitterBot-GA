@@ -20,16 +20,16 @@ class Selector:
         self.db = TweetDB(self.logger)
 
         config = json.load(open('config.json'))
-        self.tweet_count = config['tweet_count']
+        self.game_count = config.game_count
 
-    def select(self, n):
+    def select(self):
         self.logger.debug("Starting Selection!")
-        tweets = self.db.get_tweets(self.tweet_count)
-        if tweets is None:
-            self.logger.warning("Tweet Cursor is None!")
+        games = self.db.get_games(self.game_count)
+        if games is None:
+            self.logger.warning("Game Cursor is None!")
         else:
-            self.logger.debug("%d Tweets Found!" % (len(tweets),))
+            self.logger.debug("%d Games Found!" % (len(games),))
 
-        if n < len(tweets):
-            n = len(tweets)
-        return tweets[:n]
+        if self.game_count < len(games):
+            self.game_count = len(games)
+        return games[:self.game_count]

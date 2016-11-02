@@ -29,13 +29,13 @@ class DBHelper:
         if self.tweets is None:
             self.logger.debug("Cannot Find Collection for Tweets!")
 
-        self.authors = self.db['authors']
-        if self.authors is None:
-            self.logger.debug("Cannot Find Collection for Authors!")
-
         self.syntax = self.db['syntax']
         if self.syntax is None:
             self.logger.debug("Cannot Find Collection for Syntaxses!")
+
+        self.games = self.db['games']
+        if self.games is None:
+            self.logger.debug("Cannot Find Collection for Games!")
 
     # Tweets
     def add_tweet(self, data):
@@ -55,22 +55,21 @@ class DBHelper:
             self.logger.warning("Fetching Zero Tweets!")
         return data[:count]
 
-    # Authors
-    def add_author(self, data):
-        # Add a new Author
-        self.logger.debug("Adding a new Author")
-        self.authors.insert_one(data)
-
-    def get_author(self, id):
-        # Get Author's Data
-        self.logger.debug("Fetching Author (%d) Info" % (id,))
-
-        data = self.authors.find({"id" : id})
-        if data is None:
-            self.logger.warning("Author (%d) Not Found" % (id,))
-        return data
-
     # Syntax
     def get_syntax(self):
         # Return One Syntax
         self.syntax.find()
+
+    # Games
+    def get_games(self, count):
+         # Get 'N' Games
+        self.logger.debug("Fetching %d Games" % (count,))
+
+        data = self.games.find()
+        size = len(data)
+        if count < size:
+            count = size
+        
+        if count == 0:
+            self.logger.warning("Fetching Zero Games!")
+        return data[:count]

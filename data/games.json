@@ -1,42 +1,40 @@
-[
-    {
-        "name": "Titanfall 2",
-        "rating": 9
-    },
-    {
-        "name": "Sid Meier's Civilization VI",
-        "rating": 9.4
-    },
-    {
-        "name": "Clockwork Empires",
-        "rating": 6.5
-    },
-    {
-        "name": "Dark Souls III: Ashes of Ariandel",
-        "rating": 7.8
-    }
-    {
-        "name": "Mafia III",
-        "rating": 7.5
-    },
-    {
-        "name": "Virginia",
-        "rating": 8.5
-    },
-    {
-        "name": "Fallout 4: Nuka World",
-        "rating": 7.9
-    },
-    {
-        "name": "F1 2016",
-        "rating": 8.8
-    }
-    {
-        "name": "The Technomancer",
-        "rating": 4.9
-    },
-    {
-        "name": "Homefront: The Revolution",
-        "rating": 5
-    },
-]
+{
+    "name": "Titanfall 2",
+    "rating": 9
+}
+{
+    "name": "Sid Meier's Civilization VI",
+    "rating": 9.4
+}
+{
+    "name": "Clockwork Empires",
+    "rating": 6.5
+}
+{
+    "name": "Dark Souls III: Ashes of Ariandel",
+    "rating": 7.8
+}
+{
+    "name": "Mafia III",
+    "rating": 7.5
+}
+{
+    "name": "Virginia",
+    "rating": 8.5
+}
+{
+    "name": "Fallout 4: Nuka World",
+    "rating": 7.9
+}
+{
+    "name": "F1 2016",
+    "rating": 8.8
+}
+{
+    "name": "The Technomancer",
+    "rating": 4.9
+}
+{
+    "name": "Homefront: The Revolution",
+    "rating": 5
+}

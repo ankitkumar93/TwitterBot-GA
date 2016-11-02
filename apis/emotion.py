@@ -1,8 +1,10 @@
+import json
 from db import DBHelper
 
 '''
 Author: Ankit Kumar
 Emotion Helper Class
+Defines Functions to Return List of Keywords based on Emotion
 '''
 
 class EmotionHelper
@@ -20,15 +22,15 @@ class EmotionHelper
 
 
     def get_emotion(self, rating):
-        if rating >= ratings.excellent:
-            return emotions.excellent
-        elif rating >= ratings.good:
-            return emotions.good
-        elif rating >= ratings.neutral:
-            return emotions.neutral
-        elif rating >= ratings.bad:
-            return emotions.bad
+        if rating >= self.ratings.excellent:
+            return self.emotions.excellent
+        elif rating >= self.ratings.good:
+            return self.emotions.good
+        elif rating >= self.ratings.neutral:
+            return self.emotions.neutral
+        elif rating >= self.ratings.bad:
+            return self.emotions.bad
         else:
-            return emotions.worse
+            return self.emotions.worse
 
 

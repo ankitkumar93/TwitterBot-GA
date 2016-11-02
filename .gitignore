@@ -1,3 +1,7 @@
 *.aux
 *.log
 *.pdf
+.idea/
+key.json
+db/
+tracery/

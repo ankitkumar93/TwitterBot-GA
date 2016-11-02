@@ -12,9 +12,9 @@ class DBHelper:
     Database API Class
     '''
 
-    def __init__(self, logger):
+    def __init__(self, args):
         # Initialize DB Class
-        self.logger = logger
+        self.logger = args['logger']
         self.logger.debug("Initializing DB API!")
         
         self.client = MongoClient('mongodb://localhost:27017')
@@ -47,18 +47,19 @@ class DBHelper:
         self.logger.debug("Fetching %d Tweets" % (count,))
 
         data = self.tweets.find().sort("date", 1)
-        size = len(data)
+        size = data.count()
         if count < size:
             count = size
         
         if count == 0:
             self.logger.warning("Fetching Zero Tweets!")
-        return data[:count]
+        return list(data[:count])
 
     # Syntax
     def get_syntax(self):
-        # Return One Syntax
-        self.syntax.find()
+        # Return Syntaxes
+        syntaxes = self.syntax.find()
+        return syntaxes
 
     # Games
     def get_games(self, count):
@@ -66,10 +67,10 @@ class DBHelper:
         self.logger.debug("Fetching %d Games" % (count,))
 
         data = self.games.find()
-        size = len(data)
+        size = data.count()
         if count < size:
             count = size
         
         if count == 0:
             self.logger.warning("Fetching Zero Games!")
-        return data[:count]
+        return list(data[:count])

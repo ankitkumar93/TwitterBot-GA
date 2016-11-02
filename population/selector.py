@@ -1,5 +1,5 @@
 import json
-from apis.db import TweetDB
+from apis.db import DBHelper
 
 '''
 Author: Ankit Kumar
@@ -15,12 +15,11 @@ class Selector:
     '''
 
     def __init__(self, args):
-        self.logger = args.logger
+        self.logger = args['logger']
         self.logger.debug("Seting Up Selector!")
-        self.db = TweetDB(self.logger)
+        self.db = DBHelper(dict(logger=self.logger))
 
-        config = json.load(open('config.json'))
-        self.game_count = config.game_count
+        self.game_count = args['game_count']
 
     def select(self):
         self.logger.debug("Starting Selection!")

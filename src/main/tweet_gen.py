@@ -22,12 +22,9 @@ class TweetGenerator:
     '''
     def __init__(self, args):
         self.logger = args.logger
-        self.logger.debug("Initializing Tweet Generator!")
-
-        configFile = open(args.config, 'r')
-        configData = configFile.read()
-
-        self.config = json.loads(configData)
+        self.logger.debug("Initializing Tweet Generator!");
+        
+        self.config = json.load(open(args.config))
 
         self.tweetHelper = TweetHelper(dict(logger=self.logger,
                                             keyPath=str(self.config['key_path'])))

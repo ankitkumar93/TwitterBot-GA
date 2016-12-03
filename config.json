@@ -1,9 +1,0 @@
-{
-    "game_count" : 10,
-    "filter_threshold" : 150000,
-    "key_path": "apis/key.json",
-    "user_path": "apis/user.json",
-    "emotion_path": "apis/emotion.json",
-    "rating_path": "apis/ratings.json",
-    "grammar_path": "apis/grammar.json"
-}

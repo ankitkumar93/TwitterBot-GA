@@ -37,7 +37,7 @@ def mkArgs():
                                           help='fetch new tweets (stream)')
     fetch_parser.set_defaults(func=fetch_tweets)
     fetch_parser.add_argument('-c', '--config', type=str,
-                                   default='config.json', 
+                                   default='config/config.json', 
                                    help='provide config file')
 
     # tweet generate subparser
@@ -45,7 +45,7 @@ def mkArgs():
                                           help='generate new tweets')
     generator_parser.set_defaults(func=gen_tweets)
     generator_parser.add_argument('-c', '--config', type=str,
-                                   default='config.json', 
+                                   default='config/config.json', 
                                    help='provide config file')
 
     args = parser.parse_args()

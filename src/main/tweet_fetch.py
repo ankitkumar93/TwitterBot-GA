@@ -20,7 +20,11 @@ class TweetFetch:
 
         config = json.load(open(args.config))
         
+        # Setup Stream Listener
         streamListener = StreamListener()
+        streamListener.setup(dict(logger=args.logger, stream_path=config['stream_path'], tags_path=config['tags_path']))
+
+        # Setup Stream
         key = json.load(open(config['key_path']))
         users = json.load(open(config['user_path']))
         auth = tweepy.OAuthHandler(key['consumer_key'], key['consumer_secret'])

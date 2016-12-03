@@ -1,5 +1,6 @@
-import ntlk
+import nltk
 import json
+import os
 from collections import Counter
 
 '''
@@ -9,27 +10,29 @@ Tags a tweet using parts of speech tags
 '''
 
 class Tagger:
-    def __init__(args):
-        self.tokenize = ntlk.tokenize
-        self.tag = nltk.tag
-        self.taglist = json.load(open(args['tags_path']))
+    def __init__(self, args):
+        self.logger = args['logger']
+        self.config = json.load(open(args['tags_path']))
 
-    def tag(text):
-        tokens = self.tokenize(text)
-        tags = self.tag(tokens)
+    def tagtweet(self, text):
+        tokens = nltk.word_tokenize(text)
+        tagged_text = nltk.pos_tag(tokens)
 
-        return self.filter(tags)
+        return self.filtertweet(tagged_text)
 
-    def filter(tags):
-        counts = Counter(tags)
+    def filtertweet(self, tagged_text):
+        words, tags = zip(*tagged_text)
+        tag_counts = Counter(tags)
+        nn_tag = 'NN'
+        jj_tag = 'JJ'
+        tag_len = len(tags)
 
-        if len(counts) == len(taglist)
+        if nn_tag not in tag_counts or tag_counts[nn_tag] != self.config['nn_count']:
+            return None
+        elif jj_tag not in tag_counts or tag_counts[jj_tag] != self.config['jj_count']:
             return None
 
-        for tag in taglist:
-            if tag not in counts:
-                return None
-            elif !(tag.min <= counts[tag] && counts[tag] <= tag.max):
-                return None
+        if tag_len < self.config['min_tags'] or tag_len > self.config['max_tags']:
+            return None
 
         return tags

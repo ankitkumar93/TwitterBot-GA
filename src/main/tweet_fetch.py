@@ -17,18 +17,19 @@ class TweetFetch:
     def __init__(self, args):
         self.logger = args.logger
         self.logger.debug("Setting Up Stream!")
+
+        config = json.load(open(args.config))
         
         streamListener = StreamListener()
-        key = json.load(open(args.keyPath))
-        users = json.load(open(args.userPath))
+        key = json.load(open(config['key_path']))
+        users = json.load(open(config['user_path']))
         auth = tweepy.OAuthHandler(key['consumer_key'], key['consumer_secret'])
         auth.set_access_token(key['access_token'], key['access_secret'])
 
-        self.users = [users['ign'], users['ytgaming'], users['twitch'], users['gamespot']]
         self.stream = tweepy.Stream(auth, streamListener)
 
     def fetch(self):
-        self.stream.filter(follow=self.users)
+        self.stream.filter(languages=['en'], locations=[-180,-90,180,90])
         self.logger.debug("Starting To Stream!")
 
 

@@ -5,5 +5,6 @@
     "user_path": "apis/user.json",
     "emotion_path": "apis/emotion.json",
     "rating_path": "apis/ratings.json",
-    "grammar_path": "apis/grammar.json"
+    "grammar_path": "apis/grammar.json",
+    "tags_path": "apis/tags.json"
 }

@@ -1,6 +1,5 @@
 from apis.tweet import TweetHelper
 import json
-import tweepy
 
 '''
 Author: Ankit Kumar
@@ -14,10 +13,10 @@ class LRComputer:
 
     def compute(self, tweetid):
         # Compute LR Score
-        try:
-            retweets_val = self.tweethelper.get_num_retweets(tweetid)
-            favorites_val = self.tweethelper.get_num_favorites(tweetid)
-        except tweepy.error.TweepError:
-            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
+        retweets_val = self.tweethelper.get_num_retweets(tweetid)
+        favorites_val = self.tweethelper.get_num_favorites(tweetid)
+
+        if retweets_val is None or favorites_val is None:
+            return 0
 
         return (retweets_val + favorites_val)

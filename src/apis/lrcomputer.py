@@ -9,7 +9,7 @@ LR Score Computer: Computes the LR Score for Tweets
 class LRComputer:
     def __init__(self, args):
         self.logger = args['logger']
-        self.tweethelper = TweetHelper(dict(logger=args['logger'], keyPath=args['keyPath']))
+        self.tweethelper = TweetHelper(dict(logger=args['logger'], keyPath=args['key_path']))
 
     def compute(tweetid):
         # Compute LR Score

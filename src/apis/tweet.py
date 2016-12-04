@@ -31,7 +31,7 @@ class TweetHelper:
         except tweepy.error.RateLimitError:
             assert False, "Rate limit exceeded!"
         except tweepy.error.TweepError:
-            self.logger.debug("Tweet Status not found for id: %d" % id)
+            self.logger.warning("Tweet Status not found for id: %d" % id)
         
     def get_num_lr(self, id):
         self.logger.debug("Fetching favorites for tweet-id: %s" % id)

@@ -28,22 +28,33 @@ class TweetHelper:
             status = self.api.get_status(id)
             self.logger.debug("Status fetched successfully for tweet-id: %s" % id)
             return status
+        except tweepy.error.RateLimitError:
+            assert False, "Rate limit exceeded!"
         except tweepy.error.TweepError:
-            assert False, "Tweet Status not found for tweetid: %d" % id
+            self.logger.debug("Tweet Status not found for id: %d" % id)
         
     def get_num_lr(self, id):
         self.logger.debug("Fetching favorites for tweet-id: %s" % id)
         status = self.get_status(id)
+        if status is None:
+            return 0, 0
+        
         return status.favorite_count, status.retweet_count
         
     def get_num_favorites(self, id):
         self.logger.debug("Fetching favorites for tweet-id: %s" % id)
         status = self.get_status(id)
+        if status is None:
+            return 0
+
         return status.favorite_count
         
     def get_num_retweets(self, id):
         self.logger.debug("Fetching retweets for tweet-id: %s" % id)
         status = self.get_status(id)
+        if status is None:
+            return 0
+
         return status.retweet_count
 
     def get_user_from_status(self, status):

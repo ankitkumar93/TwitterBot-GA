@@ -60,8 +60,6 @@ class DBHelper:
 
     def get_filtered_tweets_condition(self, lr_threshold):
         # Get 'N' Tweets (or All)
-        self.logger.debug("Fetching %d Filtered Tweets" % (count,))
-
         data = self.filtered_tweets.find({"lrscore": {
                                             "$gte": lr_threshold}
                                          }).sort("lrscore")
@@ -69,8 +67,6 @@ class DBHelper:
 
     def get_filtered_tweets(self):
         # Get 'N' Tweets (or All)
-        self.logger.debug("Fetching %d Filtered Tweets" % (count,))
-
         data = self.filtered_tweets.find()
         return list(data)
 

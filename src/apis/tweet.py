@@ -33,7 +33,7 @@ class TweetHelper:
         try:
             status = self.get_status(id)
         except tweepy.error.TweepError:
-            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
+            self.logger.warning("Tweet Status not found for tweetid: %d" % id)
 
         return status.favorite_count
 
@@ -42,7 +42,7 @@ class TweetHelper:
         try:
             status = self.get_status(id)
         except tweepy.error.TweepError:
-            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
+            self.logger.warning("Tweet Status not found for tweetid: %d" % id)
 
         return status.retweet_count
 

@@ -29,6 +29,10 @@ class DBHelper:
         if self.tweets is None:
             self.logger.debug("Cannot Find Collection for Tweets!")
 
+        self.filtered_tweets = self.db['filtered_tweets']
+        if self.tweets is None:
+            self.logger.debug("Cannot Find Collection for Filtered Tweets!")
+
         self.syntax = self.db['syntax']
         if self.syntax is None:
             self.logger.debug("Cannot Find Collection for Syntaxses!")
@@ -42,18 +46,36 @@ class DBHelper:
         # Add a new Tweet
         self.tweets.insert_one(data)
 
-    def get_tweets(self, count):
+    def get_tweets(self, page, count):
         # Get 'N' Tweets
         self.logger.debug("Fetching %d Tweets" % (count,))
-
-        data = self.tweets.find().sort("date", 1)
-        size = data.count()
-        if count < size:
-            count = size
+        data = self.tweets.find().skip(count*(page-1)).limit(count)
+        return list(data)
         
-        if count == 0:
-            self.logger.warning("Fetching Zero Tweets!")
-        return list(data[:count])
+       
+
+    # Filtered Tweets
+    def add_filtered_tweet(self, data):
+        # Add a Filtered Tweets
+        self.filtered_tweets.insert_one(data)
+
+
+    def get_filtered_tweets(self, page, count):
+        # Get 'N' Tweets (or All)
+        self.logger.debug("Fetching %d Filtered Tweets" % (count,))
+
+        data = self.filtered_tweets.find().skip(count*(page-1)).limit(count).sort("lrscore")
+        return list(data)
+
+    def update_filtered_tweet(self, tweetid, lrscore):
+        # Updated a Filtered Tweet
+        self.filtered_tweets.update_one({
+            'tweetid': tweetid
+            },{
+                "$set": {
+                    'lrscore': lrscore
+                }
+            }, upsert=False)
 
     # Syntax
     def get_syntax(self):
@@ -66,11 +88,5 @@ class DBHelper:
          # Get 'N' Games
         self.logger.debug("Fetching %d Games" % (count,))
 
-        data = self.games.find()
-        size = data.count()
-        if count < size:
-            count = size
-        
-        if count == 0:
-            self.logger.warning("Fetching Zero Games!")
-        return list(data[:count])
+        data = self.games.find().limit(count)
+        return list(data)

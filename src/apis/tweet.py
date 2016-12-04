@@ -12,7 +12,7 @@ class TweetHelper:
 
     def __init__(self, args):
         self.logger = args['logger']
-        key = json.load(open(args['keyPath']))
+        key = json.load(open(args['key_path']))
         self.auth = tweepy.OAuthHandler(key['consumer_key'], key['consumer_secret'])
         self.auth.set_access_token(key['access_token'], key['access_secret'])
         self.api = tweepy.API(self.auth)

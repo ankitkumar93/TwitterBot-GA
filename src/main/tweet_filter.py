@@ -12,12 +12,11 @@ Push Tweets that satisfy the Constraint to Filter DB
 
 class TweetFilter:
     '''
-    Tweet Fetcher Class
+    Tweet Filter Class
     '''
 
     def __init__(self, args):
         self.logger = args.logger
-        self.logger.debug("Setting Up Stream!")
 
         config = json.load(open(args.config))
 

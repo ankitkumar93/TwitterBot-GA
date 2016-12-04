@@ -85,6 +85,10 @@ class DBHelper:
             }, upsert=False)
 
     # Syntax
+    def add_syntax(self, data):
+        # Add a new Syntax
+        self.syntax.insert_one(data)
+
     def get_syntax(self):
         # Return Syntaxes
         syntaxes = self.syntax.find()

@@ -11,7 +11,7 @@ class LRComputer:
         self.logger = args['logger']
         self.tweethelper = TweetHelper(dict(logger=args['logger'], key_path=args['key_path']))
 
-    def compute(tweetid):
+    def compute(self, tweetid):
         # Compute LR Score
         retweets_val = self.tweethelper.get_num_retweets(tweetid)
         favorites_val = self.get_num_favorites(tweetid)

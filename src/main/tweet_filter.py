@@ -36,7 +36,7 @@ class TweetFilter:
         for tweet in tweets:
             if self.filter.check(tweet):
                 filtered_tweet = dict(tweetid=filtered_tweet['tweetid'], tags=filtered_tweet['tags'], lrscore=0)
-                self.db.add_filtered_tweet(filter_tweet)
+                self.db.add_filtered_tweet(filtered_tweet)
 
                 filtered_tweets_count += 1
 

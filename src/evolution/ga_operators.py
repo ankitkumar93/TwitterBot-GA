@@ -1,5 +1,7 @@
 import random
 
+from simhash import Simhash
+
 '''
 Author: Anand Purohit
 Filter module to ensure that we only consider those tweets
@@ -17,8 +19,13 @@ class GAOperators:
         self.mutationProbability = args['mutationProbability']
         # The number of elites to be selected from each iteration of evolution
         self.numElite = args['numElite']
+
+    '''
+    Set the goal population for the genetic algorithm.
+    '''
+    def set_goal_population(self, goalPopulation):
         # The target population against which the fitness of each individual will be compared
-        self.goalPopulation = args['goalPopulation']
+        self.goalPopulation = goalPopulation
 
     '''
     Performs a mutation on a list of tags (child).
@@ -26,11 +33,12 @@ class GAOperators:
     '''
     def mutate(self, child):
         random.seed(64)
-        mutatingTags = random.sample(xrange(len(child['tags'])), 2)
-        mutantTags = child['tags'][mutatingTags[0]], child['tags'][mutatingTags[1]]
-        child['tags'][mutatingTags[0]] = mutantTags[1]
-        child['tags'][mutatingTags[1]] = mutantTags[0]
-        child['fitness'] = 0
+        if random.random() < self.mutationProbability:
+            mutatingTags = random.sample(xrange(len(child['tags'])), 2)
+            mutantTags = child['tags'][mutatingTags[0]], child['tags'][mutatingTags[1]]
+            child['tags'][mutatingTags[0]] = mutantTags[1]
+            child['tags'][mutatingTags[1]] = mutantTags[0]
+            child['fitness'] = 0
         return child
 
     '''
@@ -40,24 +48,27 @@ class GAOperators:
     Part 1 of child 2 is then combined with Part 2 of child 1
     '''
     def crossover(self, child1, child2):
-        part11 = child1['tags'][:self.crossoverPoint]
-        part22 = child2['tags'][(self.individualLength - self.crossoverPoint):]
-        part12 = child2['tags'][:(self.individualLength - self.crossoverPoint)]
-        part21 = child1['tags'][self.crossoverPoint:]
-        return dict(fitness=0, tags=part11.extend(part22)), dict(fitness=0, tags=part12.extend(part21))
+        random.seed(64)
+        if random.random() < self.crossoverProbability:
+            part11 = child1['tags'][:self.crossoverPoint]
+            part22 = child2['tags'][self.crossoverPoint:]
+            part12 = child2['tags'][self.crossoverPoint:]
+            part21 = child1['tags'][:self.crossoverPoint]
+            return dict(fitness=0, tags=part11.extend(part22)), dict(fitness=0, tags=part12.extend(part21))
+        return child1, child2
 
     '''
     Computes the fitness value for an individual
     '''
-    # def evaluate(self, individual):
-    #     # fitness = -1
-    #     # for goal in self.goalPopulation:
-    #     #     sim = calcSimHash(individual['tags'], goal['tags'])
-    #     #     currFitness = sim * goal['lrscore']
-    #     #     if currFitness > fitness:
-    #     #         fitness = currFitness
-    #     # individual['fitness'] = fitness
-    #     # return fitness
+    def evaluate(self, individual):
+        fitness = -1
+        for goal in self.goalPopulation:
+            sim = Simhash(individual('tags')).distance(Simhash(goal['tags']))
+            currFitness = sim * goal['lrscore']
+            if currFitness > fitness:
+                fitness = currFitness
+        individual['fitness'] = fitness
+        return fitness
 
     '''
     Returns the top numElite number of fittest individuals

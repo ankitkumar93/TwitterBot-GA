@@ -16,24 +16,29 @@ class TweetLRScore:
 
     def __init__(self, args):
         self.logger = args.logger
-
         config = json.load(open(args.config))
-
-        self.lrcomputer = LRScore(dict(logger=args.logger, key_path=config['key_path'], lrscore_path=config['lrscore_path']))
+        self.lrcomputer = LRScore(dict(logger=args.logger, key_path=config['key_path']))
         self.db = DBHelper(dict(logger=args.logger))
 
     def run(self):
         self.logger.debug("Starting to Computer LRScore for Tweets!")
 
         # Get All Tweets
-        tweets = self.db.get_filtered_tweets(0)
+        tweets = self.db.get_filtered_tweets()
 
         # Computer LRScore for Tweets
+        maxLRScore = 0
         for tweet in tweets:
             tweetid = tweet['tweetid']
-            lrscore self.lrcomputer.compute(tweetid)
-                self.db.update_filtered_tweet(tweetid, lrscore)
+            lrscore = self.lrcomputer.compute(tweetid)
+            tweet['lrscore'] = lrscore
+            maxLRScore = max(lrscore, maxLRScore)
 
+        # Normalize LRScore for Tweets
+        # Update in DB
+        for tweet in tweets:
+            tweet['lrscore'] /= maxLRScore
+            self.db.update_filtered_tweet(tweet['tweetid'], tweet['lrscore'])
 
 
 def lrscore_tweets(args):

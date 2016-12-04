@@ -1,6 +1,6 @@
 import tweepy
 import json
-from apis.lrscore import LRScore
+from apis.lrcomputer import LRComputer
 from apis.db import DBHelper
 
 '''
@@ -17,11 +17,11 @@ class TweetLRScore:
     def __init__(self, args):
         self.logger = args.logger
         config = json.load(open(args.config))
-        self.lrcomputer = LRScore(dict(logger=args.logger, key_path=config['key_path']))
+        self.lrcomputer = LRComputer(dict(logger=args.logger, key_path=config['key_path']))
         self.db = DBHelper(dict(logger=args.logger))
 
     def run(self):
-        self.logger.debug("Starting to Computer LRScore for Tweets!")
+        self.logger.debug("Starting to Compute LRScore for Tweets!")
 
         # Get All Tweets
         tweets = self.db.get_filtered_tweets()

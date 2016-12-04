@@ -5,6 +5,7 @@ from main.tweet_fetch import fetch_tweets
 from main.tweet_gen import gen_tweets
 from main.tweet_filter import filter_tweets
 from main.tweet_lrscore import lrscore_tweets
+from main.tweet_ga import ga_tweets
 
 '''
 Author: Ankit Kumar

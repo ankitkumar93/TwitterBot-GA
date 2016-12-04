@@ -34,6 +34,6 @@ class TweetGA:
         self.db.add_syntax(solution.tags)
 
 
-def tweets_ga(args):
+def ga_tweets(args):
     tweetGA = TweetGA(args)
     tweetGA.run()

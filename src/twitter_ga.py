@@ -4,6 +4,7 @@ import logging.handlers
 from main.tweet_fetch import fetch_tweets
 from main.tweet_gen import gen_tweets
 from main.tweet_filter import filter_tweets
+from main.tweet_lrscore import lrscore_tweets
 
 '''
 Author: Ankit Kumar
@@ -48,6 +49,25 @@ def mkArgs():
     filter_parser.add_argument('-c', '--config', type=str,
                                    default='config/config.json', 
                                    help='provide config file')
+
+    # tweet lrscore subparser
+    lrscore_parser = subparsers.add_parser('lrscore',
+                                           help='compute lrscore for the db of tweets')
+    lrscore_parser.set_defaults(func=lrscore_tweets)
+    lrscore_parser.add_argument('-c', '--config', type=str,
+                                   default='config/config.json', 
+                                   help='provide config file')
+
+    # tweet genetic algorithm subparser
+    ga_parser = subparsers.add_parser('ga',
+                                       help='run the genetic algorithm')
+    ga_parser.set_defaults(func=ga_tweets)
+    ga_parser.add_argument('-c', '--config', type=str,
+                                 default='config/config.json', 
+                                 help='provide config file')
+    ga_parser.add_argument('-g', '--goal', type=int,
+                                 default=1, 
+                                 help='provide goal population')
 
     # tweet generate subparser
     generator_parser = subparsers.add_parser('generate', 

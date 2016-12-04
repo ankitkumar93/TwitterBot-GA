@@ -6,5 +6,5 @@
     "rating_path": "config/ratings.json",
     "grammar_path": "config/grammar.json",
     "filter_path": "config/filter.json",
-    "lrscore_path": "config/lrscore.json"
+    "ga_path": "ga.json"
 }

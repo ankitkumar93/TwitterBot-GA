@@ -52,19 +52,26 @@ class DBHelper:
         data = self.tweets.find().skip(count*(page-1)).limit(count)
         return list(data)
         
-       
-
     # Filtered Tweets
     def add_filtered_tweet(self, data):
         # Add a Filtered Tweets
         self.filtered_tweets.insert_one(data)
 
 
-    def get_filtered_tweets(self, page, count):
+    def get_filtered_tweets_condition(self, lr_threshold):
         # Get 'N' Tweets (or All)
         self.logger.debug("Fetching %d Filtered Tweets" % (count,))
 
-        data = self.filtered_tweets.find().skip(count*(page-1)).limit(count).sort("lrscore")
+        data = self.filtered_tweets.find({"lrscore": {
+                                            "$gte": lr_threshold}
+                                         }).sort("lrscore")
+        return list(data)
+
+    def get_filtered_tweets(self):
+        # Get 'N' Tweets (or All)
+        self.logger.debug("Fetching %d Filtered Tweets" % (count,))
+
+        data = self.filtered_tweets.find()
         return list(data)
 
     def update_filtered_tweet(self, tweetid, lrscore):
@@ -78,6 +85,10 @@ class DBHelper:
             }, upsert=False)
 
     # Syntax
+    def add_syntax(self, data):
+        # Add a new Syntax
+        self.syntax.insert_one(data)
+
     def get_syntax(self):
         # Return Syntaxes
         syntaxes = self.syntax.find()

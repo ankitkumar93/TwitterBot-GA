@@ -60,19 +60,12 @@ class DBHelper:
         self.filtered_tweets.insert_one(data)
 
 
-    def get_filtered_tweets(self, count):
+    def get_filtered_tweets(self, page, count):
         # Get 'N' Tweets (or All)
         self.logger.debug("Fetching %d Filtered Tweets" % (count,))
 
-        data = self.filtered_tweets.find().sort("lrscore")
-        size = data.count()
-        if count < size:
-            count = size
-        
-        if count == 0:
-            return list(data)
-        else:
-            return list(data[:count])
+        data = self.filtered_tweets.find().skip(count*(page-1)).limit(count).sort("lrscore")
+        return list(data)
 
     def update_filtered_tweet(self, tweetid, lrscore):
         # Updated a Filtered Tweet
@@ -95,11 +88,5 @@ class DBHelper:
          # Get 'N' Games
         self.logger.debug("Fetching %d Games" % (count,))
 
-        data = self.games.find()
-        size = data.count()
-        if count < size:
-            count = size
-        
-        if count == 0:
-            self.logger.warning("Fetching Zero Games!")
-        return list(data[:count])
+        data = self.games.find().limit(count)
+        return list(data)

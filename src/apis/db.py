@@ -46,19 +46,13 @@ class DBHelper:
         # Add a new Tweet
         self.tweets.insert_one(data)
 
-    def get_tweets(self, count):
+    def get_tweets(self, page, count):
         # Get 'N' Tweets
         self.logger.debug("Fetching %d Tweets" % (count,))
-
-        data = self.tweets.find()
-        size = data.count()
-        if count < size:
-            count = size
+        data = self.tweets.find().skip(count*(page-1)).limit(count)
+        return list(data)
         
-        if count == 0:
-            return list(data)
-        else:
-            return list(data[:count])
+       
 
     # Filtered Tweets
     def add_filtered_tweet(self, data):

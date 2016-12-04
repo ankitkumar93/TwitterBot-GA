@@ -26,19 +26,25 @@ class TweetFilter:
     def run(self):
         self.logger.debug("Starting to Filter Tweets!")
 
-        # Initialize count for filtered tweets
-        filtered_tweets_count = 0
+        # Initialize Pagination Data
+        page_items_count = 1000
+        page = 1
 
-        # Get All Tweets
-        tweets = self.db.get_tweets(0)
+        while True:
+            # Get 1000 Tweets
+            tweets = self.db.get_tweets(page, page_items_count)
 
-        # Filter Tweets
-        for tweet in tweets:
-            if self.filter.check(tweet):
-                filtered_tweet = dict(tweetid=filtered_tweet['tweetid'], tags=filtered_tweet['tags'], lrscore=0)
-                self.db.add_filtered_tweet(filtered_tweet)
+            # Filter Tweets
+            for tweet in tweets:
+                if self.filter.check(tweet):
+                    filtered_tweet = dict(tweetid=filtered_tweet['tweetid'], tags=filtered_tweet['tags'], lrscore=0)
+                    self.db.add_filtered_tweet(filtered_tweet)
 
-                filtered_tweets_count += 1
+            # Stopping Condition
+            if len(tweets) < page_items_count:
+                break
+            else:
+                page += 1
 
 
 

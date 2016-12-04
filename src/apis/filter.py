@@ -34,8 +34,11 @@ class Filter:
         # Remove ignored tags from tag list
         tags_filtered = [tag for tag in tags if tag not in self.tags_ignorelist]
 
+        # Convert all NN to NNP
+        tags_filtered_2 = ['NNP' if tag == 'NN' else tag for tag in tags_filtered]
+
         # Compute Tag Count
-        tags_dict = Counter(tags_filtered)
+        tags_dict = Counter(tags_filtered_2)
 
         # Filter on Total Tags
         tags_len = len(tags)

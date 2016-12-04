@@ -80,6 +80,16 @@ class DBHelper:
         else:
             return list(data[:count])
 
+    def update_filtered_tweet(self, tweetid, lrscore):
+        # Updated a Filtered Tweet
+        self.filtered_tweets.update_one({
+            'tweetid': tweetid
+            },{
+                "$set": {
+                    'lrscore': lrscore
+                }
+            }, upsert=False)
+
     # Syntax
     def get_syntax(self):
         # Return Syntaxes

@@ -41,7 +41,7 @@
                 "max": 5
             }
         },
-        "ignorelist": ["#"]
+        "ignorelist": ["#" ,":"]
     }
 
 }

@@ -50,7 +50,6 @@ class Filter:
                 tagcount = tags_dict[tag]
                 tag_constaints = self.tags_map[tag]
                 if tagcount < tag_constaints['min'] or tagcount > tag_constaints['max']:
-                    print("%s: %d" %(tag, tagcount))
                     return False
 
         return True

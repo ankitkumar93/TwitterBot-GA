@@ -3,6 +3,7 @@ import logging
 import logging.handlers
 from main.tweet_fetch import fetch_tweets
 from main.tweet_gen import gen_tweets
+from main.tweet_filter import filter_tweets
 
 '''
 Author: Ankit Kumar
@@ -37,6 +38,14 @@ def mkArgs():
                                           help='fetch new tweets (stream)')
     fetch_parser.set_defaults(func=fetch_tweets)
     fetch_parser.add_argument('-c', '--config', type=str,
+                                   default='config/config.json', 
+                                   help='provide config file')
+    
+    # tweet filter subparser
+    filter_parser = subparsers.add_parser('filter',
+                                           help='filter db of tweets')
+    filter_parser.set_defaults(func=filter_tweets)
+    filter_parser.add_argument('-c', '--config', type=str,
                                    default='config/config.json', 
                                    help='provide config file')
 

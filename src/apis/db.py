@@ -29,6 +29,10 @@ class DBHelper:
         if self.tweets is None:
             self.logger.debug("Cannot Find Collection for Tweets!")
 
+        self.filtered_tweets = self.db['filtered_tweets']
+        if self.tweets is None:
+            self.logger.debug("Cannot Find Collection for Filtered Tweets!")
+
         self.syntax = self.db['syntax']
         if self.syntax is None:
             self.logger.debug("Cannot Find Collection for Syntaxses!")
@@ -46,14 +50,35 @@ class DBHelper:
         # Get 'N' Tweets
         self.logger.debug("Fetching %d Tweets" % (count,))
 
-        data = self.tweets.find().sort("date", 1)
+        data = self.tweets.find()
         size = data.count()
         if count < size:
             count = size
         
         if count == 0:
-            self.logger.warning("Fetching Zero Tweets!")
-        return list(data[:count])
+            return list(data)
+        else:
+            return list(data[:count])
+
+    # Filtered Tweets
+    def add_filtered_tweet(self, data):
+        # Add a Filtered Tweets
+        self.filtered_tweets.insert_one(data)
+
+
+    def get_filtered_tweets(self, count):
+        # Get 'N' Tweets (or All)
+        self.logger.debug("Fetching %d Filtered Tweets" % (count,))
+
+        data = self.filtered_tweets.find().sort("lrscore")
+        size = data.count()
+        if count < size:
+            count = size
+        
+        if count == 0:
+            return list(data)
+        else:
+            return list(data[:count])
 
     # Syntax
     def get_syntax(self):

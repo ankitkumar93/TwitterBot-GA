@@ -85,7 +85,7 @@ class DBHelper:
         self.filtered_tweets.update_one({
             'tweetid': tweetid
             },{
-                $set: {
+                "$set": {
                     'lrscore': lrscore
                 }
             }, upsert=False)

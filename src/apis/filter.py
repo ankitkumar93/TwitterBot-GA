@@ -37,8 +37,10 @@ class Filter:
         # Convert all NN to NNP
         tags_filtered_2 = ['NNP' if tag == 'NN' else tag for tag in tags_filtered]
 
+        print(tags_filtered_2)
+
         # Compute Tag Count
-        tags_dict = Counter(tags_filtered)
+        tags_dict = Counter(tags_filtered_2)
 
         # Filter on Total Tags
         tags_len = len(tags)

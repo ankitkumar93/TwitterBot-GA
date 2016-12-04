@@ -14,6 +14,6 @@ class LRComputer:
     def compute(self, tweetid):
         # Compute LR Score
         retweets_val = self.tweethelper.get_num_retweets(tweetid)
-        favorites_val = self.get_num_favorites(tweetid)
+        favorites_val = self.tweethelper.get_num_favorites(tweetid)
 
         return (retweets_val + favorites_val)

@@ -13,7 +13,10 @@ class LRComputer:
 
     def compute(self, tweetid):
         # Compute LR Score
-        retweets_val = self.tweethelper.get_num_retweets(tweetid)
-        favorites_val = self.tweethelper.get_num_favorites(tweetid)
+        try:
+            retweets_val = self.tweethelper.get_num_retweets(tweetid)
+            favorites_val = self.tweethelper.get_num_favorites(tweetid)
+        except tweepy.error.TweepError:
+            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
 
         return (retweets_val + favorites_val)

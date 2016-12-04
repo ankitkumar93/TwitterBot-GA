@@ -30,12 +30,20 @@ class TweetHelper:
 
     def get_num_favorites(self, id):
         self.logger.debug("Fetching favorites for tweet-id: %s" % id)
-        status = self.get_status(id)
+        try:
+            status = self.get_status(id)
+        except tweepy.error.TweepError:
+            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
+
         return status.favorite_count
 
     def get_num_retweets(self, id):
         self.logger.debug("Fetching retweets for tweet-id: %s" % id)
-        status = self.get_status(id)
+        try:
+            status = self.get_status(id)
+        except tweepy.error.TweepError:
+            self.logger.warning("Tweet Status not found for tweetid: %d" % tweetid)
+
         return status.retweet_count
 
     def get_user_from_status(self, status):

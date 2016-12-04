@@ -37,7 +37,7 @@ class TweetFilter:
             # Filter Tweets
             for tweet in tweets:
                 if self.filter.check(tweet):
-                    filtered_tweet = dict(tweetid=filtered_tweet['tweetid'], tags=filtered_tweet['tags'], lrscore=0)
+                    filtered_tweet = dict(tweetid=tweet['tweetid'], tags=tweet['tags'], lrscore=0)
                     self.db.add_filtered_tweet(filtered_tweet)
 
             # Stopping Condition

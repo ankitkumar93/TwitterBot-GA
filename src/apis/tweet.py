@@ -24,25 +24,27 @@ class TweetHelper:
 
     def get_status(self, id):
         self.logger.debug("Fetching status for tweet-id: %s" % id)
-        status = self.api.get_status(id)
-        self.logger.debug("Status fetched successfully for tweet-id: %s" % id)
-        return status
-
+        try:
+            status = self.api.get_status(id)
+            self.logger.debug("Status fetched successfully for tweet-id: %s" % id)
+            return status
+        except tweepy.error.TweepError:
+            assert False, "Tweet Status not found for tweetid: %d" % id
+        
+    def get_num_lr(self, id):
+        self.logger.debug("Fetching favorites for tweet-id: %s" % id)
+        status = self.get_status(id)
+        return status.favorite_count, status.retweet_count
+        
     def get_num_favorites(self, id):
         self.logger.debug("Fetching favorites for tweet-id: %s" % id)
-        try:
-            status = self.get_status(id)
-            return status.favorite_count
-        except tweepy.error.TweepError:
-            self.logger.warning("Tweet Status not found for tweetid: %d" % id)
-
+        status = self.get_status(id)
+        return status.favorite_count
+        
     def get_num_retweets(self, id):
         self.logger.debug("Fetching retweets for tweet-id: %s" % id)
-        try:
-            status = self.get_status(id)
-            return status.retweet_count
-        except tweepy.error.TweepError:
-            self.logger.warning("Tweet Status not found for tweetid: %d" % id)
+        status = self.get_status(id)
+        return status.retweet_count
 
     def get_user_from_status(self, status):
         self.logger.debug("Getting user from status with tweet-id: %s" % status.id_str)

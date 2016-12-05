@@ -17,7 +17,7 @@ goalpop=$($pycmd $lr_threshold)
 for size in $goalpop
 do
     SECONDS=0
-    runcmd=$gacmd $size
+    runcmd="$gacmd $size"
     for((i = 0; i < 5; i++)); do
         $runcmd
     done

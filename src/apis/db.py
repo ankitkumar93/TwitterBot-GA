@@ -95,9 +95,10 @@ class DBHelper:
         # Return a random row
         data = list(self.syntax.find())
         size = len(data)
-        randomIndex = random.randint(0, size - 1)
 
-        return data[randomIndex]
+        if size > 0:
+            randomIndex = random.randint(0, size - 1)
+            return data[randomIndex]
 
     # Games
     def get_games(self, count):

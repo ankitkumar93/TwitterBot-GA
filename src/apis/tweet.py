@@ -31,7 +31,7 @@ class TweetHelper:
 
     def get_status(self, id):
         if self.status_rate == 800:
-            self.logger.warning("--Rate Limit Reached. Going to sleep!--")
+            self.logger.warning("Rate Limit Reached. Going to sleep!")
             time.sleep(self.status_reset_time)
             self.status_rate = 0
 

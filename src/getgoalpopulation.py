@@ -22,7 +22,7 @@ def main():
                     })
 
     goalSizes = [1, math.log(goalMaxSize, 2), math.sqrt(goalMaxSize), goalMaxSize/2]
-    goalSizeList = [str(x) for x in goalSizes]
+    goalSizeList = [str(int(x)) for x in goalSizes]
 
     print(" ".join(goalSizeList))
 

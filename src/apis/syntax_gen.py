@@ -118,11 +118,11 @@ class SyntaxGen:
     syntax that Tracery may be able to understand
     '''
     def create_syntax(self, tags):
-        syntax = ""
+        syntaxList = []
         useAhead = None
         for tag in tags:
             useAhead, placeholder = self.create_syntax_word(tag, useAhead)
-            syntax += placeholder
+            syntaxList.add(placeholder)
 
         if len(tags) < self.idealLength:
             if random.random() < self.conjunctionProb:
@@ -130,6 +130,7 @@ class SyntaxGen:
                 extensionSyntax = self.dbHelper.get_random_syntax()
                 # Join the existing syntax with that generated from the randomly chosen structure
                 if extensionSyntax is not None:
-                    syntax += self.create_syntax_word("CC", None) + extensionSyntax
+                    syntaxList.add(self.create_syntax_word("CC", None))
+                    syntaxList.add(extensionSyntax)
 
-        return syntax
+        return syntaxList.join(" ")

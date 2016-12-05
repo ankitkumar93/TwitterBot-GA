@@ -61,7 +61,7 @@ class GeneticAlgorithm:
             # CrossOver
             remainingOffsprings = self.populationSize - self.numElite
             while remainingOffsprings > 0:
-                    childIndex = random.sample(xrange(numElite - 1), 2)
+                    childIndex = random.sample(xrange(self.numElite - 1), 2)
                     child1 = offsprings[childIndex[0]]
                     child2 = offsprings[childIndex[1]]
 
@@ -72,7 +72,7 @@ class GeneticAlgorithm:
                     remainingOffsprings -= 2
 
             # Mutation
-            for childIndex in xrange(numElite, self.populationSize - 1):
+            for childIndex in xrange(self.numElite, self.populationSize - 1):
                 child = offsprings[childIndex]
                 self.gaoperators.mutate(child)
 

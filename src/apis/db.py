@@ -95,7 +95,7 @@ class DBHelper:
         # Return a random row
         data = list(self.syntax.find())
         size = len(data)
-        randomIndex = random.randomInt(0, size - 1)
+        randomIndex = random.randint(0, size - 1)
 
         return data[randomIndex]
 

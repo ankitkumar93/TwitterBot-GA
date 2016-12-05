@@ -45,8 +45,14 @@ class GeneticAlgorithm:
             self.logger.debug("Generations: %d" % gen)
 
             # Compute Fitness
+            generationMaxFitness = 0
             for individual in self.population:
-                self.gaoperators.evaluate(individual)
+                individualFitness = self.gaoperators.evaluate(individual)
+                generationMaxFitness = max(generationMaxFitness, individualFitness)
+
+            # Normalize Fitness
+            for individual in self.population:
+                individual['fitness'] /= generationMaxFitness
 
             fittestChild = max(self.population, key=lambda child: child['fitness'])
             if fittestChild['fitness'] >= self.maxFitness:

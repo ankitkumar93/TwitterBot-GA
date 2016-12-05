@@ -17,12 +17,14 @@ def main():
     lr_threshold = sys.argv[1]
     goalMaxSize = collection.count(
                     {"lrscore": {
-                        "$gt": lr_threshold
+                        "$gt": float(lr_threshold)
                         }
                     })
 
     goalSizes = [1, math.log2(goalMaxSize), math.sqrt(goalMaxSize), goalMaxSize/2]
-    print(" ".join(goalSizes))
+    goalSizeList = [str(x) for x in goalSizes]
+    
+    print(" ".join(goalSizeList))
 
 
 if __name__ == "__main__":

@@ -34,10 +34,13 @@ class TweetLRScore:
             tweet['lrscore'] = lrscore
             maxLRScore = max(lrscore, maxLRScore)
 
+        scaleUpValue = maxLRScore/float(2)
+        maxLRScore += scaleUpValue
+
         # Normalize LRScore for Tweets
         # Update in DB
         for tweet in tweets:
-            tweet['lrscore'] /= maxLRScore
+            tweet['lrscore'] = (tweet['lrscore'] + scaleUpValue)/maxLRScore
             self.db.update_filtered_tweet(tweet['tweetid'], tweet['lrscore'])
 
 

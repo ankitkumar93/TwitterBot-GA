@@ -49,7 +49,7 @@ class GeneticAlgorithm:
                 self.gaoperators.evaluate(individual)
 
             fittestChild = max(self.population, key=lambda child: child['fitness'])
-            if fittestChild.fitness >= self.maxFitness:
+            if fittestChild['fitness'] >= self.maxFitness:
                 break
 
             # Generate Offsprings
@@ -77,5 +77,5 @@ class GeneticAlgorithm:
             # Set Population to new Generation
             self.population[:] = offsprings
 
-        solution = max(self.population, key=lambda child: child.fitness)
+        solution = max(self.population, key=lambda child: child['fitness'])
         return solution

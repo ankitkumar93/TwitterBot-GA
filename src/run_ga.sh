@@ -3,25 +3,26 @@
 # Works for different parameters
 
 # Commands
-gacmd="./twitter_ga"
+gacmd="./twitter_ga ga -g"
 pycmd="python getgoalpopulation.py"
 
 # Globals
 lr_threshold="0.34"
-logdir=$1
-logfile_prefix="ga_log_"
-logfile_ext=".log"
-outfile=$2
+outfile=$1
 
 # Fetch Goal Population Size
 goalpop=$($pycmd $lr_threshold)
 
-
 # Run GA for different Goal Population Sizes
 for size in $goalpop
 do
-    runningtime=$(time $gacmd -l $logdir/$logfile_prefix$size$logfile_ext ga -g $size)
-    outlog="Genetic Algorithm: Size: $size RunningTime: $runningtime"
+    SECONDS=0
+    runcmd=$gacmd $size
+    for((i = 0; i < 5; i++)); do
+        $runcmd
+    done
+    runtime=$SECONDS
+    outlog="Genetic Algorithm: Size: $size RunningTime: $runtime"
     echo $outlog
     echo $outlog >> $outfile
 done

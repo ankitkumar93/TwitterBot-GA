@@ -32,7 +32,6 @@ class GeneticAlgorithm:
         selectedData = data[:self.populationSize]
         self.population = [dict(tags=x['tags'], fitness=0) for x in selectedData]
 
-
     def generate_goal_population(self):
         data = self.db.get_filtered_tweets_condition(self.lrThreshold)
         random.shuffle(data)
@@ -49,7 +48,7 @@ class GeneticAlgorithm:
             for individual in self.population:
                 self.gaoperators.evaluate(individual)
 
-            fittestChild = max(self.population, key=lambda child: child.fitness)
+            fittestChild = max(self.population, key=lambda child: child['fitness'])
             if fittestChild.fitness >= self.maxFitness:
                 break
 

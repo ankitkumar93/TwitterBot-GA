@@ -29,7 +29,7 @@ class Filter:
 
         # Filter for follower count
         if follower_count < self.followers_count:
-            return False
+            return None
 
         # Remove ignored tags from tag list
         tags_filtered = [tag for tag in tags if tag not in self.tags_ignorelist]
@@ -43,16 +43,17 @@ class Filter:
         # Filter on Total Tags
         tags_len = len(tags)
         if tags_len < self.tags_min or tags_len > self.tags_max:
-            return False
+            return None
 
         # Filter for Allowed Tags
         for tag in tags_dict:
             if tag not in self.tags_map:
-                return False
+                return None
             else:
                 tagcount = tags_dict[tag]
                 tag_constaints = self.tags_map[tag]
                 if tagcount < tag_constaints['min'] or tagcount > tag_constaints['max']:
-                    return False
+                    return None
 
-        return True
+        # Return filtered tags
+        return tags_filtered_2

@@ -31,4 +31,4 @@ class EmotionHelper:
         elif rating >= self.ratings['bad']:
             return self.emotions['bad']
         else:
-            return self.emotions['worse']
+            return self.emotions['worst']

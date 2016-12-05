@@ -36,7 +36,7 @@ class GeneticAlgorithm:
     def generate_goal_population(self):
         data = self.db.get_filtered_tweets_condition(self.lrThreshold)
         random.shuffle(data)
-        selectedData = selectedData[:self.goalPopulationSize]
+        selectedData = data[:self.goalPopulationSize]
         goalPopulation = [dict(tags=x['tags'], lrscore=x['lrscore']) for x in selectedData]
         self.gaoperators.set_goal_population(goalPopulation)
         

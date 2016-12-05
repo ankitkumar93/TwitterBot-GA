@@ -42,7 +42,7 @@ class GeneticAlgorithm:
 
     def evolve(self):
         for gen in range(self.maxIterations):
-            self.logger.debug("--Generations: %d--" % gen)
+            self.logger.debug("Generations: %d" % gen)
 
             # Compute Fitness
             for individual in self.population:

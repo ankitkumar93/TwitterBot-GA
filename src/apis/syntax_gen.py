@@ -23,7 +23,7 @@ class SyntaxGen:
         # The probability of selecting "a/an" as opposed to "the" when using a determinant
         self.articleProb = config['article_probability']
         # Create regex pattern for tag checking
-        self.pattern = re.compile("[A-Z]/{2,4}/")
+        self.pattern = re.compile("[A-Z]{2,4}$")
         self.dbHelper = DBHelper(dict(logger=self.logger))
 
     '''
@@ -128,7 +128,7 @@ class SyntaxGen:
                 lastWord = syntaxList.pop()
                 lastWord += tag
                 syntaxList.append(lastWord)
-            elif self.pattern.match(tag):
+            elif self.pattern.match(tag) is not None:
                 useAhead, placeholder = self.create_syntax_word(tag, useAhead)
                 syntaxList.append(placeholder)
 

@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import random
 
 '''
 Author: Ankit Kumar
@@ -89,6 +90,14 @@ class DBHelper:
         # Return Syntaxes
         syntaxes = self.syntax.find()
         return syntaxes
+
+    def get_random_syntax(self):
+        # Return a random row
+        data = list(self.syntax.find())
+        size = len(data)
+        randomIndex = random.randomInt(0, size - 1)
+
+        return data[randomIndex]
 
     # Games
     def get_games(self, count):

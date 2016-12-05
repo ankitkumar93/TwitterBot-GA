@@ -4,8 +4,7 @@ from simhash import Simhash
 
 '''
 Author: Anand Purohit
-Filter module to ensure that we only consider those tweets
-that possess a score that is greater than a threshold score
+Module to define the different operators to be used in the genetic algorithm
 '''
 class GAOperators:
     def __init__(self, args):

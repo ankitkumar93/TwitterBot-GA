@@ -57,7 +57,8 @@ class GAOperators:
 
             child1Tags = part11.extend(part22)
             child2Tags = part12.extend(part21)
-            if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1:
+            if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1\
+                    and child1Tags.count("JJ") >= 1 and child2Tags.count("JJ") >= 1:
                 return dict(fitness=0, tags=child1Tags), dict(fitness=0, tags=child2Tags)
         return child1, child2
 

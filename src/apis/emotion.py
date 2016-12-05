@@ -16,8 +16,8 @@ class EmotionHelper:
         self.logger = args['logger']
         self.logger.debug("Initialize Emotion Helper!")
 
-        self.emotions = json.load(open(args['emotionPath']))
-        self.ratings = json.load(open(args['ratingPath']))
+        self.emotions = json.load(open(args['emotion_path']))
+        self.ratings = json.load(open(args['rating_path']))
         self.dbHelper = DBHelper(dict(logger=self.logger))
 
 

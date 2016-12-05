@@ -27,16 +27,16 @@ class TweetGenerator:
         self.config = json.load(open(args.config))
 
         self.tweetHelper = TweetHelper(dict(logger=self.logger,
-                                            keyPath=str(self.config['key_path'])))
+                                            key_path=str(self.config['key_path'])))
         self.traceryHelper = TraceryHelper(dict(logger=self.logger,
-                                                grammarPath=str(self.config['grammar_path'])))
+                                                grammar_path=str(self.config['grammar_path'])))
         self.emotionHelper = EmotionHelper(dict(logger=self.logger,
-                                                emotionPath=str(self.config['emotion_path']),
-                                                ratingPath=str(self.config['rating_path'])))
+                                                emotion_path=str(self.config['emotion_path']),
+                                                rating_path=str(self.config['rating_path'])))
         self.syntax = Syntax(dict(logger=self.logger))
 
-        self.filter = Filter(dict(logger=self.logger, tweetHelper=self.tweetHelper,
-                                  filterThreshold=self.config['filter_threshold']))
+        self.filter = Filter(dict(logger=self.logger, tweet_helper=self.tweetHelper,
+                                  filter_threshold=self.config['filter_threshold']))
         self.selector = Selector(dict(logger=self.logger, game_count=self.config['game_count']))
 
     def generate(self):
@@ -64,10 +64,11 @@ class TweetGenerator:
         tweetToPost = self.traceryHelper.gen_sentence(dict(game_name=game_name,
                                                            emotion=emotion,
                                                            syntax=syntax))
+	print(tweetToPost)
 
         # Post Tweet
-        self.logger.debug("Posting Tweet!")
-        self.tweetHelper.post_tweet(tweetToPost)
+        #self.logger.debug("Posting Tweet!")
+        #self.tweetHelper.post_tweet(tweetToPost)
 
         # Done
         self.logger.debug("Tweet Generation Finished!")

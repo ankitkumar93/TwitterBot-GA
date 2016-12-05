@@ -14,8 +14,8 @@ class Filter:
 
     def __init__(self, args):
         self.logger = args['logger']
-        self.tweetHelper = args['tweetHelper']
-        self.filterThreshold = args['filterThreshold']
+        self.tweetHelper = args['tweet_helper']
+        self.filterThreshold = args['filter_threshold']
 
     def calc_score_for_keyword(self, keyword):
         users = self.tweetHelper.get_users_who_mentioned_keyword(keyword)

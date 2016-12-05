@@ -45,14 +45,19 @@ class Filter:
         if tags_len < self.tags_min or tags_len > self.tags_max:
             return None
 
+        # Filter for missing tags
+        for tag in self.tags_map:
+            if self.tags_map[tag].min > 0 && tag not in tags_filtered_2:
+                return None
+
         # Filter for Allowed Tags
         for tag in tags_dict:
             if tag not in self.tags_map:
                 return None
             else:
                 tagcount = tags_dict[tag]
-                tag_constaints = self.tags_map[tag]
-                if tagcount < tag_constaints['min'] or tagcount > tag_constaints['max']:
+                tag_constraints = self.tags_map[tag]
+                if tagcount < tag_constraints['min'] or tagcount > tag_constraints['max']:
                     return None
 
         # Return filtered tags

@@ -121,8 +121,13 @@ class SyntaxGen:
         syntaxList = []
         useAhead = None
         for tag in tags:
-            useAhead, placeholder = self.create_syntax_word(tag, useAhead)
-            syntaxList.append(placeholder)
+            if tag == "." or tag == ",":
+                lastWord = syntaxList.pop()
+                lastWord += tag
+                syntaxList.append(lastWord)
+            else:
+                useAhead, placeholder = self.create_syntax_word(tag, useAhead)
+                syntaxList.append(placeholder)
 
         if len(tags) < self.idealLength:
             if random.random() < self.conjunctionProb:

@@ -30,8 +30,8 @@ class TraceryHelper:
         syntax = args['syntax']
 
         # emotional_word = self.gen_emotional_word(emotion)
-        self.grammar_json['emotional_word'] = emotion
-        self.grammar_json['game_name'] = game_name
+        self.grammar_json['JJ'] = emotion
+        self.grammar_json['NNP'] = game_name
         self.grammar_json['syntax'] = syntax
 
         grammar = self.load_grammar()

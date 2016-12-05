@@ -30,16 +30,16 @@ class TweetHelper:
         self.logger.debug("\"%s\" posted succesfully" % msg)
 
     def get_status(self, id):
-        if status_rate == 800:
+        if self.status_rate == 800:
             self.logger.warning("--Rate Limit Reached. Going to sleep!--")
             time.sleep(self.status_reset_time)
-            status_rate = 0
+            self.status_rate = 0
 
         try:
             self.logger.debug("Fetching status for tweet-id: %s" % id)
             status = self.api.get_status(id)
             self.logger.debug("Status fetched successfully for tweet-id: %s" % id)
-            status_rate += 1
+            self.status_rate += 1
             return status
         except tweepy.error.RateLimitError:
             assert False, "Rate limit exceeded!"

@@ -1,5 +1,6 @@
 import json
 import tweepy
+import time
 '''
 Author: Anand Purohit
 Twitter API Helper class to allow a few basic functions
@@ -17,16 +18,28 @@ class TweetHelper:
         self.auth.set_access_token(key['access_token'], key['access_secret'])
         self.api = tweepy.API(self.auth)
 
+        # Rate Initialization
+        self.status_rate = 0
+
+        # Sleep Time (in seconds)
+        self.status_reset_time = 900
+
     def post_tweet(self, msg):
         self.logger.debug("Posting status: %s" % msg)
         self.api.update_status(msg)
         self.logger.debug("\"%s\" posted succesfully" % msg)
 
     def get_status(self, id):
-        self.logger.debug("Fetching status for tweet-id: %s" % id)
+        if status_rate == 800:
+            self.logger.warning("--Rate Limit Reached. Going to sleep!--")
+            time.sleep(self.status_reset_time)
+            status_rate = 0
+
         try:
+            self.logger.debug("Fetching status for tweet-id: %s" % id)
             status = self.api.get_status(id)
             self.logger.debug("Status fetched successfully for tweet-id: %s" % id)
+            status_rate += 1
             return status
         except tweepy.error.RateLimitError:
             assert False, "Rate limit exceeded!"

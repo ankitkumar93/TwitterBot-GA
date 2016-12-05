@@ -29,9 +29,9 @@ class TweetGA:
         assert solution, 'Invalid solution!'
 
         self.logger.debug("--Solution: Fitness: %d, Syntax: %s--"
-                          % (solution.fitness, solution.tags))
+                          % (solution['fitness'], solution['tags']))
 
-        self.db.add_syntax(solution.tags)
+        self.db.add_syntax(solution['tags'])
 
 
 def ga_tweets(args):

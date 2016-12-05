@@ -11,7 +11,7 @@ Genetic Algorithm: Defines the Genetic Algorithm
 class GeneticAlgorithm:
     def __init__(self, args):
         self.logger = args['logger']
-        config = json.load(open(args['config']))
+        config = json.load(open(args['ga_path']))
         self.gaoperators = GAOperators(dict(individualLength=config['individual_length'],
                                             crossoverPoint=config['crossover_point'],
                                             crossoverProbability=config['crossover_probability'],

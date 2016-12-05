@@ -1,3 +1,4 @@
+# Author: Ankit Kumar
 # Runs the Genetic Algorithm
 # Works for different parameters
 

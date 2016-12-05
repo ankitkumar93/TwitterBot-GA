@@ -51,7 +51,7 @@ class TweetGenerator:
 
         # Get Game Info
         game_name = gameInfo['name']
-        game_rating = gameInfo['rating']
+        game_rating = int(gameInfo['rating'])
 
         # Get Emotion
         emotion = self.emotionHelper.get_emotion(game_rating)

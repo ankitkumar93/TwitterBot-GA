@@ -132,10 +132,11 @@ class SyntaxGen:
         if len(tags) < self.idealLength:
             if random.random() < self.conjunctionProb:
                 # Create a syntax for some other random structure that the GA produced
-                extensionSyntax = self.dbHelper.get_random_syntax()
+                extensionSyntax = self.dbHelper.get_random_syntax()['data']
                 # Join the existing syntax with that generated from the randomly chosen structure
                 if extensionSyntax is not None:
-                    syntaxList.append(self.create_syntax_word("CC", None))
+                    useAhead, placeholder = self.create_syntax_word("CC", None)
+                    syntaxList.append(placeholder)
                     syntaxList.append(extensionSyntax)
 
         return " ".join(syntaxList)

@@ -48,7 +48,7 @@ class GAOperators:
     '''
     def crossover(self, child1, child2):
         random.seed(64)
-        indexRange = min(child1['tags'].length, child2['tags'].length)
+        indexRange = min(max(child1['tags']), max(child2['tags']))
         crossoverPoint = random.randint(0, indexRange)
         if random.random() < self.crossoverProbability:
             part11 = child1['tags'][:crossoverPoint]

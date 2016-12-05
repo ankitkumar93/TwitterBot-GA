@@ -31,7 +31,7 @@ class TweetGA:
         self.logger.debug("--Solution: Fitness: %d, Syntax: %s--"
                           % (solution['fitness'], solution['tags']))
 
-        self.db.add_syntax(solution['tags'])
+        self.db.add_syntax(dict(data=solution['tags']))
 
 
 def ga_tweets(args):

@@ -133,4 +133,4 @@ class SyntaxGen:
                     syntaxList.append(self.create_syntax_word("CC", None))
                     syntaxList.append(extensionSyntax)
 
-        return syntaxList.join(" ")
+        return " ".join(syntaxList)

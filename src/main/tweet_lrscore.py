@@ -28,24 +28,20 @@ class TweetLRScore:
 
         # Computer LRScore for Tweets
         maxLRScore = 0
-        nonZeroLRScoreCount = 0
         for tweet in tweets:
             tweetid = tweet['tweetid']
             lrscore = self.lrcomputer.compute(tweetid)
             tweet['lrscore'] = lrscore
-            if lrscore != 0:
-                print("Yay: %d" % lrscore)
-                nonZeroLRScoreCount += 1
             maxLRScore = max(lrscore, maxLRScore)
 
-        print("Max: %d, Non-Zero Count: %d"
-              % (maxLRScore, nonZeroLRScoreCount))
+        scaleUpValue = maxLRScore/float(2)
+        maxLRScore += scaleUpValue
 
         # Normalize LRScore for Tweets
-        # Update in DB
-        # for tweet in tweets:
-        #     tweet['lrscore'] /= maxLRScore
-        #     self.db.update_filtered_tweet(tweet['tweetid'], tweet['lrscore'])
+        Update in DB
+        for tweet in tweets:
+            tweet['lrscore'] = (tweet['lrscore'] + scaleUpValue)/maxLRScore
+            self.db.update_filtered_tweet(tweet['tweetid'], tweet['lrscore'])
 
 
 def lrscore_tweets(args):

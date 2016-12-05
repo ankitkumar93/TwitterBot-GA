@@ -1,6 +1,6 @@
 import json
 import tweepy
-import sys
+import time
 '''
 Author: Anand Purohit
 Twitter API Helper class to allow a few basic functions
@@ -21,8 +21,8 @@ class TweetHelper:
         # Rate Initialization
         self.status_rate = 0
 
-        # Sleep Time
-        self.status_reset_time = 90000
+        # Sleep Time (in seconds)
+        self.status_reset_time = 900
 
     def post_tweet(self, msg):
         self.logger.debug("Posting status: %s" % msg)
@@ -32,7 +32,7 @@ class TweetHelper:
     def get_status(self, id):
         if status_rate == 800:
             self.logger.warning("--Rate Limit Reached. Going to sleep!--")
-            sys.sleep(self.status_reset_time)
+            time.sleep(self.status_reset_time)
             status_rate = 0
 
         try:

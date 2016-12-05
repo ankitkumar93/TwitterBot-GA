@@ -20,7 +20,7 @@ goalpop=$($pycmd $lr_threshold)
 # Run GA for different Goal Population Sizes
 for size in $goalpop
 do
-    runningtime=$(time $gacmd -l $logdir/$logfile_prefix$size$logfile_ext -g $size)
+    runningtime=$(time $gacmd -l $logdir/$logfile_prefix$size$logfile_ext ga -g $size)
     outlog="Genetic Algorithm: Size: $size RunningTime: $runningtime"
     echo $outlog
     echo $outlog >> $outfile

@@ -50,10 +50,6 @@ class GeneticAlgorithm:
                 individualFitness = self.gaoperators.evaluate(individual)
                 generationMaxFitness = max(generationMaxFitness, individualFitness)
 
-            # Normalize Fitness
-            for individual in self.population:
-                individual['fitness'] /= generationMaxFitness
-
             fittestChild = max(self.population, key=lambda child: child['fitness'])
             if fittestChild['fitness'] >= self.maxFitness:
                 break

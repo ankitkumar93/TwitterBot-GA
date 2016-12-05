@@ -16,6 +16,8 @@ class GAOperators:
         self.mutationProbability = args['mutationProbability']
         # The number of elites to be selected from each iteration of evolution
         self.numElite = args['numElite']
+        # The hash bit length
+        self.hashLength = 64
 
     '''
     Set the goal population for the genetic algorithm.
@@ -68,7 +70,7 @@ class GAOperators:
         fitness = -1
         for goal in self.goalPopulation:
             sim = Simhash(individual['tags']).distance(Simhash(goal['tags']))
-            currFitness = sim * goal['lrscore']
+            currFitness = sim/self.hashLength * goal['lrscore']
             if currFitness > fitness:
                 fitness = currFitness
         individual['fitness'] = fitness

@@ -11,8 +11,6 @@ class GAOperators:
     def __init__(self, args):
         # The length of each individual's tag vector
         self.individualLength = args['individualLength']
-        # The index in the list of tags on which the child will be split to perform the crossover operation
-        self.crossoverPoint = args['crossoverPoint']
         # The probability for a crossover to take place between 2 children
         self.crossoverProbability = args['crossoverProbability']
         # The probability for a mutation to take place on a child
@@ -49,12 +47,18 @@ class GAOperators:
     '''
     def crossover(self, child1, child2):
         random.seed(64)
+        indexRange = min(child1['tags'].length, child2['tags'].length)
+        crossoverPoint = random.randint(0, indexRange)
         if random.random() < self.crossoverProbability:
-            part11 = child1['tags'][:self.crossoverPoint]
-            part22 = child2['tags'][self.crossoverPoint:]
-            part12 = child2['tags'][self.crossoverPoint:]
-            part21 = child1['tags'][:self.crossoverPoint]
-            return dict(fitness=0, tags=part11.extend(part22)), dict(fitness=0, tags=part12.extend(part21))
+            part11 = child1['tags'][:crossoverPoint]
+            part22 = child2['tags'][crossoverPoint:]
+            part12 = child2['tags'][crossoverPoint:]
+            part21 = child1['tags'][:crossoverPoint]
+
+            child1Tags = part11.extend(part22)
+            child2Tags = part12.extend(part21)
+            if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1:
+                return dict(fitness=0, tags=child1Tags), dict(fitness=0, tags=child2Tags)
         return child1, child2
 
     '''
@@ -63,7 +67,7 @@ class GAOperators:
     def evaluate(self, individual):
         fitness = -1
         for goal in self.goalPopulation:
-            sim = Simhash(individual('tags')).distance(Simhash(goal['tags']))
+            sim = Simhash(individual['tags']).distance(Simhash(goal['tags']))
             currFitness = sim * goal['lrscore']
             if currFitness > fitness:
                 fitness = currFitness

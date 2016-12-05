@@ -1,5 +1,6 @@
 import random
 import json
+import re
 
 from db import DBHelper
 
@@ -21,6 +22,8 @@ class SyntaxGen:
         self.conjunctionProb = config['conjunction_probability']
         # The probability of selecting "a/an" as opposed to "the" when using a determinant
         self.articleProb = config['article_probability']
+        # Create regex pattern for tag checking
+        self.pattern = re.compile("[A-Z]/{2,4}/")
         self.dbHelper = DBHelper(dict(logger=self.logger))
 
     '''
@@ -125,7 +128,7 @@ class SyntaxGen:
                 lastWord = syntaxList.pop()
                 lastWord += tag
                 syntaxList.append(lastWord)
-            else:
+            elif self.pattern.match(tag):
                 useAhead, placeholder = self.create_syntax_word(tag, useAhead)
                 syntaxList.append(placeholder)
 

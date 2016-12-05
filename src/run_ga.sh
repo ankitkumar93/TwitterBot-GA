@@ -3,7 +3,7 @@
 # Works for different parameters
 
 # Commands
-gacmd="./twitter_ga ga"
+gacmd="./twitter_ga"
 pycmd="python getgoalpopulation.py"
 
 # Globals

@@ -122,7 +122,7 @@ class SyntaxGen:
         useAhead = None
         for tag in tags:
             useAhead, placeholder = self.create_syntax_word(tag, useAhead)
-            syntaxList.add(placeholder)
+            syntaxList.append(placeholder)
 
         if len(tags) < self.idealLength:
             if random.random() < self.conjunctionProb:
@@ -130,7 +130,7 @@ class SyntaxGen:
                 extensionSyntax = self.dbHelper.get_random_syntax()
                 # Join the existing syntax with that generated from the randomly chosen structure
                 if extensionSyntax is not None:
-                    syntaxList.add(self.create_syntax_word("CC", None))
-                    syntaxList.add(extensionSyntax)
+                    syntaxList.append(self.create_syntax_word("CC", None))
+                    syntaxList.append(extensionSyntax)
 
         return syntaxList.join(" ")

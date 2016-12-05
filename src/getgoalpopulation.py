@@ -1,5 +1,4 @@
 import sys
-import math
 from pymongo import MongoClient
 
 '''
@@ -21,7 +20,7 @@ def main():
                         }
                     })
 
-    goalSizes = [1, math.log(goalMaxSize), math.sqrt(goalMaxSize), goalMaxSize/2]
+    goalSizes = [1, math.log2(goalMaxSize), math.sqrt(goalMaxSize), goalMaxSize/2]
     print(" ".join(goalSizes))
 
 

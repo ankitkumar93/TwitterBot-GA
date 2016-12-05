@@ -34,6 +34,7 @@ class TweetLRScore:
             lrscore = self.lrcomputer.compute(tweetid)
             tweet['lrscore'] = lrscore
             if lrscore != 0:
+                print("Yay: %d" %d lrscore)
                 nonZeroLRScoreCount += 1
             maxLRScore = max(lrscore, maxLRScore)
 

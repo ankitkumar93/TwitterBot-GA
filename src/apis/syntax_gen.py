@@ -53,7 +53,7 @@ class SyntaxGen:
             # There had been "a/an" before this proper noun
             temp += "." + useAhead
 
-        if tag is "NNPS":
+        if tag === "NNPS":
             # Proper noun plural
             temp += ".s"
 
@@ -77,7 +77,7 @@ class SyntaxGen:
             # There had been "a/an" before this proper noun
             temp += "." + useAhead
 
-        if tag is "NNS":
+        if tag === "NNS":
             # Proper noun plural
             temp += ".s"
 
@@ -92,23 +92,23 @@ class SyntaxGen:
     and not consumed or modified, for any tag that does not represent a noun or a determiner
     '''
     def create_syntax_word(self, tag, useAhead):
-        if tag is "DT":
+        if tag === "DT":
             return self.get_determinant_syntax(self.articleProb)
-        elif tag is "NNP" or tag is "NNPS":
+        elif tag === "NNP" or tag === "NNPS":
             return self.get_proper_noun_syntax(tag, useAhead)
-        elif tag is "NN" or tag is "NNS":
+        elif tag === "NN" or tag === "NNS":
             return self.get_noun_syntax(tag, useAhead)
-        elif tag is "VBD" or tag is "VBN":
+        elif tag === "VBD" or tag === "VBN":
             return useAhead, "#VB.ed#"
-        elif tag is "VBG":
+        elif tag === "VBG":
             return useAhead, "#VB#ing"
-        elif tag is "VBZ" or tag is "VBP":
+        elif tag === "VBZ" or tag === "VBP":
             return useAhead, "#VB.s#"
-        elif tag is "JJR":
+        elif tag === "JJR":
             return useAhead, "#JJ#er"
-        elif tag is "JJS":
+        elif tag === "JJS":
             return useAhead, "#JJ#est"
-        elif tag is "RBS":
+        elif tag === "RBS":
             return useAhead, "#RB#est"
         else:
             return useAhead, "#" + tag + "#"

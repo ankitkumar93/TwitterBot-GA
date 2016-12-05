@@ -11,7 +11,7 @@ Genetic Algorithm: Defines the Genetic Algorithm
 class GeneticAlgorithm:
     def __init__(self, args):
         self.logger = args['logger']
-        config = json.load(open(args['config']))
+        config = json.load(open(args['ga_path']))
         self.gaoperators = GAOperators(dict(individualLength=config['individual_length'],
                                             crossoverPoint=config['crossover_point'],
                                             crossoverProbability=config['crossover_probability'],
@@ -29,13 +29,14 @@ class GeneticAlgorithm:
     def generate_population(self):
         data = self.db.get_filtered_tweets()
         random.shuffle(data)
-        self.population = data[:self.populationSize]
-
+        selectedData = data[:self.populationSize]
+        self.population = [dict(tags=x['tags'], fitness=0) for x in selectedData]
 
     def generate_goal_population(self):
-        goalData = self.db.get_filtered_tweets_condition(self.lrThreshold)
-        random.shuffle(goalData)
-        goalPopulation = goalData[:self.goalPopulationSize]
+        data = self.db.get_filtered_tweets_condition(self.lrThreshold)
+        random.shuffle(data)
+        selectedData = data[:self.goalPopulationSize]
+        goalPopulation = [dict(tags=x['tags'], lrscore=x['lrscore']) for x in selectedData]
         self.gaoperators.set_goal_population(goalPopulation)
         
 
@@ -47,8 +48,8 @@ class GeneticAlgorithm:
             for individual in self.population:
                 self.gaoperators.evaluate(individual)
 
-            fittestChild = max(self.population, key=lambda child: child.fitness)
-            if fittestChild.fitness >= self.maxFitness:
+            fittestChild = max(self.population, key=lambda child: child['fitness'])
+            if fittestChild['fitness'] >= self.maxFitness:
                 break
 
             # Generate Offsprings
@@ -76,5 +77,5 @@ class GeneticAlgorithm:
             # Set Population to new Generation
             self.population[:] = offsprings
 
-        solution = max(self.population, key=lambda child: child.fitness)
+        solution = max(self.population, key=lambda child: child['fitness'])
         return solution

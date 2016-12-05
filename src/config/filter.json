@@ -4,44 +4,17 @@
         "min": 5,
         "max": 35,
         "map": {
-           "CC": {
-                "min": 0,
-                "max": 5 
-            },
-            "DT": {
-                "min": 0,
-                "max": 5
-            },
-            "JJ": {
-                "min": 1,
-                "max": 2
-            },
             "NNP": {
                 "min": 1,
                 "max": 1
-            },
-            "PRP": {
-                "min": 0,
-                "max": 2
-            },
-            "VB": {
-                "min": 0,
-                "max": 2
-            },
-            ".": {
-                "min": 0,
-                "max": 5
-            },
-            ",": {
-                "min": 0,
-                "max": 5
-            },
-            "!": {
-                "min": 0,
-                "max": 5
             }
         },
-        "ignorelist": ["#", ":"]
+        "ignorelist": ["#", ":"],
+        "dellist": ["CD", "FW", "EX", "LS",
+                    "PDT", "POS", "PRP$",
+                    "RBR", "RP", "SYM",
+                    "WDT", "WP", "WP$",
+                    "WRB"]
     }
 
 }

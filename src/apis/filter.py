@@ -21,6 +21,7 @@ class Filter:
         self.tags_max = tagsjson['max']
         self.tags_map = tagsjson['map']
         self.tags_ignorelist = tagsjson['ignorelist']
+        self.tags_dellist = tagsjson['dellist']
         
 
     def check(self, tweet):
@@ -31,34 +32,31 @@ class Filter:
         if follower_count < self.followers_count:
             return None
 
+        # Check for dellist
+        for tag in tags:
+            if tag in self.tags_dellist:
+                return None 
+
         # Remove ignored tags from tag list
         tags_filtered = [tag for tag in tags if tag not in self.tags_ignorelist]
 
-        # Converts all NN to NNP
-        tags_filtered_2 = ['NNP' if tag == 'NN' else tag for tag in tags_filtered]
-
         # Compute Tag Count
-        tags_dict = Counter(tags_filtered_2)
+        tags_dict = Counter(tags_filtered)
 
         # Filter on Total Tags
         tags_len = len(tags)
         if tags_len < self.tags_min or tags_len > self.tags_max:
             return None
 
-        # Filter for missing tags
+        # Check for map (min, max)
         for tag in self.tags_map:
-            if self.tags_map[tag].min > 0 and tag not in tags_filtered_2:
+            if tag not in tags_dict:
                 return None
-
-        # Filter for Allowed Tags
-        for tag in tags_dict:
-            if tag not in self.tags_map:
+            
+            tag_count = tags_dict[tag]
+            tag_constraint = self.tags_map[tag]
+            if tag_count < tag_constraint['min'] or tag_count > tag_constraint['max']:
                 return None
-            else:
-                tagcount = tags_dict[tag]
-                tag_constraints = self.tags_map[tag]
-                if tagcount < tag_constraints['min'] or tagcount > tag_constraints['max']:
-                    return None
 
         # Return filtered tags
-        return tags_filtered_2
+        return tags_filtered

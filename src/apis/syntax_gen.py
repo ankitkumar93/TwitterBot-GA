@@ -1,4 +1,5 @@
 import random
+import json
 
 from db import DBHelper
 
@@ -11,13 +12,15 @@ Module to convert the structures obtained from GA into syntaxes that can be used
 class SyntaxGen:
     def __init__(self, args):
         self.logger = args['logger']
+        # Load Config
+        config = json.load(open(args['sg_path']))
         # The number of tags beyond which we will not try to extend a syntax
-        self.idealLength = args['idealLength']
+        self.idealLength = config['ideal_length']
         # The probability with which we will join 2 structures in case a
         # structure does not lead to a large enough syntax
-        self.conjunctionProb = args['conjunctionProbability']
+        self.conjunctionProb = config['conjunction_probability']
         # The probability of selecting "a/an" as opposed to "the" when using a determinant
-        self.articleProb = args['articleProbability']
+        self.articleProb = config['article_probability']
         self.dbHelper = DBHelper(dict(logger=self.logger))
 
     '''
@@ -124,8 +127,9 @@ class SyntaxGen:
         if len(tags) < self.idealLength:
             if random.random() < self.conjunctionProb:
                 # Create a syntax for some other random structure that the GA produced
-                extensionSyntax = self.create_syntax(self.dbHelper.get_random_syntax())
+                extensionSyntax = self.dbHelper.get_random_syntax()
                 # Join the existing syntax with that generated from the randomly chosen structure
-                syntax += self.create_syntax_word("CC", None) + extensionSyntax
+                if extensionSyntax is not None:
+                    syntax += self.create_syntax_word("CC", None) + extensionSyntax
 
         return syntax

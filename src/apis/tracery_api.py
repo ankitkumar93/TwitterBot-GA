@@ -16,7 +16,7 @@ class TraceryHelper:
     '''
     def __init__(self, args):
         self.logger = args['logger']
-        self.grammar_json = json.load(open(args['grammarPath']))
+        self.grammar_json = json.load(open(args['grammar_path']))
 
     def load_grammar(self):
         return tracery.Grammar(self.grammar_json)

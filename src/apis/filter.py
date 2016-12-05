@@ -47,7 +47,7 @@ class Filter:
 
         # Filter for missing tags
         for tag in self.tags_map:
-            if self.tags_map[tag].min > 0 && tag not in tags_filtered_2:
+            if self.tags_map[tag].min > 0 and tag not in tags_filtered_2:
                 return None
 
         # Filter for Allowed Tags

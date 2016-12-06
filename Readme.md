@@ -2,7 +2,7 @@
 Click [here](https://twitter.com/Botty_McBot) to view the twitter page of our bot!
 
 # Developers
-Ankit Kumar (*akumar18@ncsu.edu*)
+Ankit Kumar (*akumar18@ncsu.edu*)<br>
 Anand Purohit (*apurohi@ncsu.edu*)
 
 # Installation

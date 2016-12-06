@@ -70,7 +70,12 @@ class GeneticAlgorithm:
                     offspring1 , offspring2 = self.gaoperators.crossover(child1, child2)
                     offsprings.append(offspring1)
                     offsprings.append(offspring2)
-
+                    '''
+                    print(child1)
+                    print(child2)
+                    print(offspring1)
+                    print(offspring2)
+                    '''
                     remainingOffsprings -= 2
 
             # Mutation
@@ -78,8 +83,18 @@ class GeneticAlgorithm:
                 child = offsprings[childIndex]
                 self.gaoperators.mutate(child)
 
+            
+            for indv in self.population:
+		if indv not in offsprings:
+                    print("Not!")
+
             # Set Population to new Generation
             self.population[:] = offsprings
+
+            for indv in self.population:
+                if indv not in offsprings:
+                    print("Not!") 
+
 
         solution = max(self.population, key=lambda child: child['fitness'])
         return solution

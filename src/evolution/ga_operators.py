@@ -35,7 +35,7 @@ class GAOperators:
         random.seed(64)
         if random.random() < self.mutationProbability:
             mutatingTags = random.sample(xrange(len(child['tags'])), 2)
-            mutantTags = child['tags'][mutatingTags[0]], child['tags'][mutatingTags[1]]
+            mutantTags = [child['tags'][mutatingTags[0]], child['tags'][mutatingTags[1]]]
             child['tags'][mutatingTags[0]] = mutantTags[1]
             child['tags'][mutatingTags[1]] = mutantTags[0]
             child['fitness'] = 0
@@ -55,8 +55,8 @@ class GAOperators:
         if random.random() < self.crossoverProbability:
             part11 = child1['tags'][:crossoverPoint]
             part22 = child2['tags'][crossoverPoint:]
-            part12 = child2['tags'][crossoverPoint:]
-            part21 = child1['tags'][:crossoverPoint]
+            part12 = child2['tags'][:crossoverPoint]
+            part21 = child1['tags'][crossoverPoint:]
 
             child1Tags = part11 + part22
             child2Tags = part12 + part21
@@ -73,7 +73,7 @@ class GAOperators:
         fitness = -1
         for goal in self.goalPopulation:
             sim = Simhash(individual['tags']).distance(Simhash(goal['tags']))
-            currFitness = sim/float(self.hashLength) * goal['lrscore']
+            currFitness = (1-sim/float(self.hashLength)) * goal['lrscore']
             if currFitness > fitness:
                 fitness = currFitness
         individual['fitness'] = fitness

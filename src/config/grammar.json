@@ -1,7 +1,7 @@
 {
 	"TO": ["to"],
     "CC": ["for", "and", "not", "but", "or", "yet", "so"],
-    "IN": ["on", "in", "with", "by"],
+    "IN": ["on", "in", "with", "by", "of"],
     "JJ": ["smooth", "cheap", "great", "dumb", "smart", "nice", "dark", "big", "short"],
     "MD": ["can", "could", "may", "might", "shall", "should", "will", "would"],
     "NN": ["game", "console", "computer", "couch", "controller", "video", "soundtrack",

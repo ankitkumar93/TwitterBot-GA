@@ -70,7 +70,7 @@ class GAOperators:
         fitness = -1
         for goal in self.goalPopulation:
             sim = Simhash(individual['tags']).distance(Simhash(goal['tags']))
-            currFitness = sim/self.hashLength * goal['lrscore']
+            currFitness = sim/float(self.hashLength) * goal['lrscore']
             if currFitness > fitness:
                 fitness = currFitness
         individual['fitness'] = fitness

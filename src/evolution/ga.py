@@ -54,6 +54,8 @@ class GeneticAlgorithm:
             if fittestChild['fitness'] >= self.maxFitness:
                 break
 
+            self.logger.debug("Fitness: %d" % fittestChild['fitness'])
+
             # Generate Offsprings
             # Select Elites
             offsprings = self.gaoperators.select(self.population)

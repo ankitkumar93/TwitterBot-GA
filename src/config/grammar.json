@@ -1,0 +1,14 @@
+{
+	"TO": ["to"],
+    "CC": ["for", "and", "not", "but", "or", "yet", "so"],
+    "IN": ["on", "in", "with", "by", "of"],
+    "JJ": ["smooth", "cheap", "great", "dumb", "smart", "nice", "dark", "big", "short"],
+    "MD": ["can", "could", "may", "might", "shall", "should", "will", "would"],
+    "NN": ["game", "console", "computer", "couch", "controller", "video", "soundtrack",
+      "character", "home", "ally", "enemy", "first-person shooter", "RPG"],
+    "PRP": ["I", "me", "we", "us", "you"],
+    "RB": ["quiet", "fast", "slow", "smooth", "cute"],
+    "UH": ["alas!", "ah!", "ahem!", "awww!"],
+    "VB": ["perform", "finish", "gather", "kick", "laugh", "attempt",
+      "collect", "count", "destroy", "guard", "haunt", "kill", "protect", "smash", "watch"]
+}

@@ -1,7 +1,11 @@
 *.aux
 *.log
 *.pdf
+*.pyc
 .idea/
 key.json
 db/
 tracery/
+log
+*.sty
+*.bst

@@ -1,0 +1,4 @@
+pymongo==3.3.1
+tweepy==3.5.0
+nltk==3.2.1
+simhash==1.7.1

@@ -1,0 +1,20 @@
+{ "_id" : { "$oid" : "58462720ced7e457c993da00" }, "data" : "#JJ# #NN# #JJ# #NNP.capitalize# #NN# #NN#" }
+{ "_id" : { "$oid" : "5846273cced7e457dcf1cdc1" }, "data" : "#JJ# #NNP.capitalize# #JJ# #NN# #NN#. #NN#" }
+{ "_id" : { "$oid" : "5846275bced7e457ebaca7ac" }, "data" : "#RB#  #IN# #NNP.capitalize.a# the #NN#. #NN# #NN#" }
+{ "_id" : { "$oid" : "5846277cced7e4580aaa8c18" }, "data" : "#NN# #NNP.capitalize# #PRP# #VB.s# #PRP#  #IN# #NN.a# #VB.s# #RB# #NN#." }
+{ "_id" : { "$oid" : "5846278fced7e4581bfccf6e" }, "data" : "#NN# the  #NNP.capitalize.a# #JJ#est #NN.s# #NN#" }
+{ "_id" : { "$oid" : "5846281cced7e4582f45262b" }, "data" : "#NN# #NN# #NNP.capitalize# #JJ# #NN# #NN.s#" }
+{ "_id" : { "$oid" : "584628adced7e4584b649b06" }, "data" : "#NN# #NN# #NN# #NN#... #JJ# #NNP.capitalize# #JJ#" }
+{ "_id" : { "$oid" : "584628c0ced7e458634a2cca" }, "data" : "#NNP.capitalize# #VB.s# #NN# #NN# #IN# #JJ# #NN#.  #IN# the #NN# #MD# #VB.s# #VB.ed#, #CC# #VB# #JJ# #NN.s# #VB.s# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462975ced7e45872ee81f4" }, "data" : "#NN# #NN# #NN.s# #VB.s# #NN# the #NNP.capitalize#  #NN.a# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462a1fced7e4588f611334" }, "data" : "#JJ# #NNP.capitalize#  #NN.a.s# #RB# #JJ# #NN# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462abfced7e458a6838501" }, "data" : "#VB# the #NN# #NN# #NN# #IN# #JJ# #NN# #NN# #NNP.capitalize#" }
+{ "_id" : { "$oid" : "58462ac1ced7e458bfc1bda7" }, "data" : "#NN# #NN# #NNP.capitalize# #PRP# #VB# #NN#. #NN.s# #IN#" }
+{ "_id" : { "$oid" : "58462ac6ced7e458ce91a1b0" }, "data" : "#VB#ing #JJ# #NN# #NN# #JJ# #RB# #JJ# #NN.s# #CC# #NN# #NNP.capitalize#, #NN# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462b6eced7e458ddf8de29" }, "data" : "#NNP.capitalize# #JJ# #NN.s# #VB# #VB.ed#. #NN# #NN#" }
+{ "_id" : { "$oid" : "58462b74ced7e458f9e95f32" }, "data" : "#JJ# #NN.s# #VB.s#  #NN.a# #NN# #NNP.capitalize# #VB.s#" }
+{ "_id" : { "$oid" : "58462c2dced7e4590801118b" }, "data" : "#PRP# #RB# #JJ# #NN.s# #RB# the #NN# #NN# #NN# #NN# #NNP.capitalize#" }
+{ "_id" : { "$oid" : "58462cdeced7e45923b01f85" }, "data" : "#NNP.capitalize#. #PRP# #JJ# #VB# #NN# #VB.ed# #NN#. #NN# #NN#" }
+{ "_id" : { "$oid" : "58462db9ced7e4593f5e6c6b" }, "data" : "#NN# #NNP.capitalize# #MD# #PRP# #VB#  #JJ# #RB# #MD# #IN#  #JJ# #NN.a# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462dbeced7e4595f528846" }, "data" : "the #VB.s# #VB.s# #NN# #NN# #PRP#  #JJ# #NN.a# #NN# #NNP.capitalize# #NN# #NN#" }
+{ "_id" : { "$oid" : "58462dbfced7e4596eaf6d19" }, "data" : " #NN.a# #IN# #JJ# #NN.s# #CC# #NN.s# #VB.s# #VB.ed# #IN#  #NN.a# #NN#. #NNP.capitalize# #VB# #IN# #JJ# #NN# #NN#" }

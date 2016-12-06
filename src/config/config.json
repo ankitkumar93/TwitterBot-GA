@@ -1,0 +1,11 @@
+{
+    "game_count" : 10,
+    "filter_threshold" : 150000,
+    "key_path": "config/key.json",
+    "emotion_path": "config/emotion.json",
+    "rating_path": "config/ratings.json",
+    "grammar_path": "config/grammar.json",
+    "filter_path": "config/filter.json",
+    "ga_path": "config/ga.json",
+    "sg_path": "config/sg.json"
+}

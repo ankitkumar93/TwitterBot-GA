@@ -1,0 +1,7 @@
+{
+    "excellent" : ["great", "strong", "wicked", "sweet"],
+    "good" : ["nice", "cool", "fine", "neat", "tough"],
+    "neutral" : ["fair", "lukewarm", "calm", "light"],
+    "bad" : ["dull", "bad", "slow", "weak", "cold"],
+    "worst" : ["dumb", "poor", "mean"]
+}

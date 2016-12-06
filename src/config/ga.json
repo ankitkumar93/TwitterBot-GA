@@ -1,0 +1,11 @@
+{
+    "population_size": 50,
+    "max_fitness": 0.8,
+    "max_iterations": 500,
+    "individual_length": 35,
+    "crossover_point": 12,
+    "crossover_probability": 0.5,
+    "mutation_probability": 0.2,
+    "num_elite": 4,
+    "lr_threshold": 0.5
+}

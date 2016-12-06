@@ -1,7 +1,0 @@
-{
-    "excellent" : ["Magnificent", "Remarkable", "Amazing", "Beautiful", "Brilliant", "Delightful", "Dazzling", "Enticing", "Excellent", "Exceptional"],
-    "good" : ["Charming", "Elegant", "Adorable", "Admirable", "Fabulous", "Good", "Interesting", "Lovely", "Nice", "Pleasing"],
-    "neutral" : ["mediocre", "ordinary", "average", "unremarkable", "lackluster", "forgettable", "commonplace", "inferior", "run-of-the-mill", "passable"],
-    "bad" : ["boring", "feeble", "gruesome", "imperfect", "insipid", "lousy", "poor", "rotten", "sad", "bad"],
-    "worst" : ["abysmal", "awful", "depressing", "despicable", "horrible", "monstrous", "repulsive", "sickening", "terrible", "worthless"]
-}

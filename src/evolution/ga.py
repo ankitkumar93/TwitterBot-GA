@@ -12,7 +12,8 @@ class GeneticAlgorithm:
     def __init__(self, args):
         self.logger = args['logger']
         config = json.load(open(args['ga_path']))
-        self.gaoperators = GAOperators(dict(individualLength=config['individual_length'],
+        self.gaoperators = GAOperators(dict(logger=args['logger'],
+                                            individualLength=config['individual_length'],
                                             crossoverPoint=config['crossover_point'],
                                             crossoverProbability=config['crossover_probability'],
                                             mutationProbability=config['mutation_probability'],

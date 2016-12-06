@@ -8,6 +8,7 @@ Module to define the different operators to be used in the genetic algorithm
 '''
 class GAOperators:
     def __init__(self, args):
+        self.logger = args['logger']
         # The length of each individual's tag vector
         self.individualLength = args['individualLength']
         # The probability for a crossover to take place between 2 children
@@ -38,6 +39,7 @@ class GAOperators:
             child['tags'][mutatingTags[0]] = mutantTags[1]
             child['tags'][mutatingTags[1]] = mutantTags[0]
             child['fitness'] = 0
+            self.logger.debug("Mutation Successful!")
         return child
 
     '''
@@ -60,6 +62,7 @@ class GAOperators:
             child2Tags = part12.extend(part21)
             if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1\
                     and child1Tags.count("JJ") >= 1 and child2Tags.count("JJ") >= 1:
+                    self.logger.debug("Crossover Successful!")
                 return dict(fitness=0, tags=child1Tags), dict(fitness=0, tags=child2Tags)
         return child1, child2
 

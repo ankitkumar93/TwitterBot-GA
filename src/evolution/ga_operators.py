@@ -86,6 +86,6 @@ class GAOperators:
     '''
     def select(self, population):
         clones = list(population)
-        clones.sort(key=lambda clone: clone['fitness'])
+        clones.sort(key=lambda clone: clone['fitness'], reverse=True)
         return clones[:self.numElite]
 

@@ -39,6 +39,7 @@ class GeneticAlgorithm:
         selectedData = data[:self.goalPopulationSize]
         goalPopulation = [dict(tags=x['tags'], lrscore=x['lrscore']) for x in selectedData]
         self.gaoperators.set_goal_population(goalPopulation)
+        print(goalPopulation)
         
 
     def evolve(self):
@@ -58,31 +59,31 @@ class GeneticAlgorithm:
 
             # Generate Offsprings
             # Select Elites
-            offsprings = self.gaoperators.select(self.population)            
+            offsprings = self.gaoperators.select(self.population)
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-#            self.logger.debug("Fitness after Selection: %f" % fittestChild['fitness'])
+            self.logger.debug("Fitness after Selection: %f" % fittestChild['fitness'])
  
             # CrossOver
             remainingOffsprings = self.populationSize - self.numElite
+            r = random.Random(500)
             while remainingOffsprings > 0:
-                    childIndex = random.sample(xrange(self.numElite), 2)
-                    child1 = offsprings[childIndex[0]]
-                    child2 = offsprings[childIndex[1]]
+                    childIndex1 = 0
+                    childIndex2 = 0
+                    while childIndex1 == childIndex2:
+                        childIndex1 = r.randint(0, self.numElite - 1)
+                        childIndex2 = r.randint(0, self.numElite - 1)
+                    
+                    child1 = offsprings[childIndex1]
+                    child2 = offsprings[childIndex2]
 
                     offspring1 , offspring2 = self.gaoperators.crossover(child1, child2)
                     offsprings.append(offspring1)
                     offsprings.append(offspring2)
                     
                     remainingOffsprings -= 2
-	
-                    print(child1['fitness'])
-                    print(child2['fitness'])
-                    print(self.gaoperators.evaluate(offspring1))
-                    print(self.gaoperators.evaluate(offspring2))
-
 
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-#            self.logger.debug("Fitness after Crossover: %f" % fittestChild['fitness'])
+            self.logger.debug("Fitness after Crossover: %f" % fittestChild['fitness'])
             # Mutation
             for childIndex in xrange(self.numElite, self.populationSize):
                 child = offsprings[childIndex]
@@ -90,7 +91,7 @@ class GeneticAlgorithm:
 
 
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-#            self.logger.debug("Fitness after Mutation: %f" % fittestChild['fitness'])
+            self.logger.debug("Fitness after Mutation: %f" % fittestChild['fitness'])
             
             # Set Population to new Generation
             self.population = offsprings

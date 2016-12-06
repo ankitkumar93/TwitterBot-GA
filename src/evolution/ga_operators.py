@@ -19,6 +19,14 @@ class GAOperators:
         self.numElite = args['numElite']
         # The hash bit length
         self.hashLength = 64
+        # Set Random
+        # Selection
+        self.rcs = random.Random(500)
+        self.rms = random.Random(500)
+
+        # Probability
+        self.rcp = random.Random(500)
+        self.rmp = random.Random(500)
 
     '''
     Set the goal population for the genetic algorithm.
@@ -32,14 +40,14 @@ class GAOperators:
     Two random tags are chosen from the list of tags, and their positions are swapped
     '''
     def mutate(self, child):
-        random.seed(64)
-        if random.random() < self.mutationProbability:
-            mutatingTags = random.sample(xrange(len(child['tags'])), 2)
-            mutantTags = [child['tags'][mutatingTags[0]], child['tags'][mutatingTags[1]]]
-            child['tags'][mutatingTags[0]] = mutantTags[1]
-            child['tags'][mutatingTags[1]] = mutantTags[0]
+        if self.rmp.random() < self.mutationProbability:
+            mutatingTag1 = self.rms.randint(0, len(child['tags']) - 1)
+            mutatingTag2 = self.rms.randint(0, len(child['tags']) - 1)
+            mutantTags = [child['tags'][mutatingTag1], child['tags'][mutatingTag2]]
+            child['tags'][mutatingTag1] = mutantTags[1]
+            child['tags'][mutatingTag2] = mutantTags[0]
             child['fitness'] = 0
- #           self.logger.debug("Mutation Successful!")
+            self.logger.debug("Mutation Successful!")
         return child
 
     '''
@@ -49,10 +57,9 @@ class GAOperators:
     Part 1 of child 2 is then combined with Part 2 of child 1
     '''
     def crossover(self, child1, child2):
-        random.seed(64)
         indexRange = min(len(child1['tags']), len(child2['tags']))
-        crossoverPoint = random.randint(0, indexRange)
-        if random.random() < self.crossoverProbability:
+        crossoverPoint = self.rcs.randint(0, indexRange - 1)
+        if self.rcp.random() < self.crossoverProbability:
             part11 = child1['tags'][:crossoverPoint]
             part22 = child2['tags'][crossoverPoint:]
             part12 = child2['tags'][:crossoverPoint]
@@ -72,7 +79,6 @@ class GAOperators:
     def evaluate(self, individual):
         fitness = -1
         for goal in self.goalPopulation:
-            
             sim = Simhash(" ".join(individual['tags'])).distance(Simhash(" ".join(goal['tags'])))
             currFitness = (1-sim/float(self.hashLength)) * goal['lrscore']
             if currFitness > fitness:

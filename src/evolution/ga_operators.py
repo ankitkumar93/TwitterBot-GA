@@ -58,8 +58,8 @@ class GAOperators:
             part12 = child2['tags'][crossoverPoint:]
             part21 = child1['tags'][:crossoverPoint]
 
-            child1Tags = part11.extend(part22)
-            child2Tags = part12.extend(part21)
+            child1Tags = part11 + part22
+            child2Tags = part12 + part21
             if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1\
                     and child1Tags.count("JJ") >= 1 and child2Tags.count("JJ") >= 1:
                 self.logger.debug("Crossover Successful!")

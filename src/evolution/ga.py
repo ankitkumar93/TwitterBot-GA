@@ -43,7 +43,7 @@ class GeneticAlgorithm:
 
     def evolve(self):
         for gen in range(self.maxIterations):
-            self.logger.debug("Generations: %d" % gen)
+#            self.logger.debug("Generations: %d" % gen)
 
             # Compute Fitness
             generationMaxFitness = 0
@@ -60,41 +60,30 @@ class GeneticAlgorithm:
             # Select Elites
             offsprings = self.gaoperators.select(self.population)
 
+            
+
             # CrossOver
             remainingOffsprings = self.populationSize - self.numElite
             while remainingOffsprings > 0:
-                    childIndex = random.sample(xrange(self.numElite - 1), 2)
+                    childIndex = random.sample(xrange(self.numElite), 2)
                     child1 = offsprings[childIndex[0]]
                     child2 = offsprings[childIndex[1]]
 
                     offspring1 , offspring2 = self.gaoperators.crossover(child1, child2)
                     offsprings.append(offspring1)
                     offsprings.append(offspring2)
-                    '''
-                    print(child1)
-                    print(child2)
-                    print(offspring1)
-                    print(offspring2)
-                    '''
+                    
                     remainingOffsprings -= 2
 
+            fittestChild = max(self.population, key=lambda child: child['fitness'])
+            self.logger.debug("Fitness: %f" % fittestChild['fitness'])
             # Mutation
-            for childIndex in xrange(self.numElite, self.populationSize - 1):
+            for childIndex in xrange(self.numElite, self.populationSize):
                 child = offsprings[childIndex]
-                self.gaoperators.mutate(child)
-
+#                self.gaoperators.mutate(child)
             
-            for indv in self.population:
-		if indv not in offsprings:
-                    print("Not!")
-
             # Set Population to new Generation
-            self.population[:] = offsprings
-
-            for indv in self.population:
-                if indv not in offsprings:
-                    print("Not!") 
-
+            self.population = offsprings
 
         solution = max(self.population, key=lambda child: child['fitness'])
         return solution

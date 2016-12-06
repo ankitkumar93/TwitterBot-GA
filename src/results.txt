@@ -1,0 +1,4 @@
+Genetic Algorithm: Size: 1 RunningTime: 128
+Genetic Algorithm: Size: 7 RunningTime: 656
+Genetic Algorithm: Size: 13 RunningTime: 341
+Genetic Algorithm: Size: 90 RunningTime: 587

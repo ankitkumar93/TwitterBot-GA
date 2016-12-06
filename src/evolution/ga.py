@@ -60,7 +60,7 @@ class GeneticAlgorithm:
             # Select Elites
             offsprings = self.gaoperators.select(self.population)            
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-            self.logger.debug("Fitness after Selection: %f" % fittestChild['fitness'])
+#            self.logger.debug("Fitness after Selection: %f" % fittestChild['fitness'])
  
             # CrossOver
             remainingOffsprings = self.populationSize - self.numElite
@@ -74,10 +74,15 @@ class GeneticAlgorithm:
                     offsprings.append(offspring2)
                     
                     remainingOffsprings -= 2
+	
+                    print(child1['fitness'])
+                    print(child2['fitness'])
+                    print(self.gaoperators.evaluate(offspring1))
+                    print(self.gaoperators.evaluate(offspring2))
 
 
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-            self.logger.debug("Fitness after Crossover: %f" % fittestChild['fitness'])
+#            self.logger.debug("Fitness after Crossover: %f" % fittestChild['fitness'])
             # Mutation
             for childIndex in xrange(self.numElite, self.populationSize):
                 child = offsprings[childIndex]
@@ -85,7 +90,7 @@ class GeneticAlgorithm:
 
 
             fittestChild = max(offsprings, key=lambda child: child['fitness'])
-            self.logger.debug("Fitness after Mutation: %f" % fittestChild['fitness'])
+#            self.logger.debug("Fitness after Mutation: %f" % fittestChild['fitness'])
             
             # Set Population to new Generation
             self.population = offsprings

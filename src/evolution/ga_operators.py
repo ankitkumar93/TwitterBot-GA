@@ -62,7 +62,7 @@ class GAOperators:
             child2Tags = part12 + part21
             if child1Tags.count("NNP") is 1 and child2Tags.count("NNP") is 1\
                     and child1Tags.count("JJ") >= 1 and child2Tags.count("JJ") >= 1:
-#                self.logger.debug("Crossover Successful!")
+                self.logger.debug("Crossover Successful!")
                 return dict(fitness=0, tags=child1Tags), dict(fitness=0, tags=child2Tags)
         return dict(fitness=0, tags=list(child1['tags'])), dict(fitness=0, tags=list(child2['tags']))
 

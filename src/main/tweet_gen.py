@@ -64,11 +64,10 @@ class TweetGenerator:
         tweetToPost = self.traceryHelper.gen_sentence(dict(game_name=game_name,
                                                            emotion=emotion,
                                                            syntax=syntax))
-	print(tweetToPost)
 
         # Post Tweet
-        #self.logger.debug("Posting Tweet!")
-        #self.tweetHelper.post_tweet(tweetToPost)
+        self.logger.debug("Posting Tweet!")
+        self.tweetHelper.post_tweet(tweetToPost)
 
         # Done
         self.logger.debug("Tweet Generation Finished!")

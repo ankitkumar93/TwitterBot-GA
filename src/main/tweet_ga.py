@@ -36,7 +36,7 @@ class TweetGA:
         # Check for Invalid Solution
         assert solution, 'Invalid solution!'
 
-        self.logger.debug("Solution: Fitness: %d, Syntax: %s"
+        self.logger.debug("Solution: Fitness: %f, Syntax: %s"
                           % (solution['fitness'], solution['tags']))
 
         # Convert Tags to a Syntax (String)

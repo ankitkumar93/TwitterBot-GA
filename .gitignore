@@ -7,3 +7,5 @@ key.json
 db/
 tracery/
 log
+*.sty
+*.bst

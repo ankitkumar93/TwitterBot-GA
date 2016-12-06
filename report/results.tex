@@ -1,0 +1,32 @@
+\section{Results}
+In this section we present the experimental setup we used and the results we observed by controlling the parameters in our setup.
+
+\subsection{Experimental Setup}
+The aim of this project was to generate optimal tweet structures, which can select and order parts of speech tags and then fill in values for those tags using Tracery and our database of words. Our genetic algorithm was responsible for generating the tweet structures, which were then pushed to our database of structures, which was fed to Tracery. The main parameter of control for us was the goal population, which specifies how many tweets were selected as the optimal tweets, against which our genetic algorithm evaluates every generation's population for fitness measure. We decided that, for a tweet to be present in the superset of all tweets that can be present in the goal population, it must possess a normalized LR Score $\geq 0.34$. The number of tweets in our database that satisfied this criteria ($n$) were found to be $181$. We used this number to come up with four different sizes of the goal population ($m$) -[$1$, $\log_2 n$, $\sqrt{n}$ and $\frac{n}{2}$]. For each solution, we ran our genetic algorithm a maximum of \textit{500 iterations}, with a threshold fitness of \textit{0.8}. This setup was executed 5 times for each value of goal population size and the average running time was computed.
+Further, we used our tweet generator module to utilize the tweet structures generated, along with Tracery, to generate and post tweets to our bot's twitter page. The word lists for filling in the tweet structures were hand authored. Since our domain for tweet generation was video games, we had a name of a video game in each of these tweets, along with at least one adjective describing the bot's emotion towards the game.
+
+\subsection{Observations}
+Our experimental setup had two different parts, i.e. Genetic Algorithm and Tweet Generator. We present below the observation for both of these parts.
+
+\subsubsection{Genetic Algorithm}
+With the given number of maximum iterations and maximum fitness, a list of four different values for goal population (m), we expected the genetic algorithm to take more time to execute, as the goal population increased. We observed that this was true for an increase in goal population from $1$ to $\log_2 n$. This was due to the increase in computation while computing fitness value for each individual in each generation. However, when we further increased the goal population size to $\sqrt{n}$, we observed a decline in running time. This was due to the fact that the maximum fitness value was achieved early (before the number of iterations reached the maximum iteration count). The reason for this occurrence is that a bigger goal population caused a larger scope in finding a similarity with a goal individual, as well as having more goal individuals that have a high LR Score (thus increasing the impact of the similarity between the individual and the goal). This would cause the algorithm to run for fewer iterations, resulting in lower running time. On increasing the goal population further to $\frac{n}{2}$, we observed that the running time increases. This was again due to the fact that more computation is required, coupled with the fact that beyond a certain size of goal population the minimum number of iterations needed to reach maximum fitness saturates. This leads to an increase in running time with further increase in goal population. Hence an optimal goal population size would be able to provide the best running time, and it plays a critical role in the way our genetic algorithm works. We also observed that increasing the goal population size lead to an increase in the average fitness of solution. It ranged from 0.35 for m=1 to 0.78 for m=$\log_2 {n}$ to 0.85 for m=$\sqrt n$. A further increase did not improve the average fitness of solution. This again emphasizes on the fact that selecting an optimal value for the goal population size plays a big role in the working of our genetic algorithm.
+We further note that a really small goal population size leads to a relatively simple tweet structure as show below: 
+
+    \textit{JJ NN JJ NNP.capitalize NN NN}
+
+A higher goal population size was able to generate much more complex tweet structures with more parts of speech tags in it, as given below:
+
+    \textit{the VB.s VB.s NN NN PRP JJ NN.a NN NNP.capitalize NN NN},
+    
+where NN: noun, VB: verb, JJ: adjective, PRP: personal pronoun, and NNP: proper noun.
+
+We also observed that all the tweet structures had a lot of nouns present, with fewer tags of other types.
+
+\subsubsection{Tweet Generation}
+After filling in the values for tags in the tweet structure using Tracery, we were able to generate tweets in English and post them to the bot's twitter page. The overall structure of the tweet varied a lot, but on an all the structure, some basic rules of English were being followed, such as the placement of adverb before a verb and a proper placement of adjectives with nouns or proper nouns. However, on filling these structures with actual words, the sentences did not make much sense. Often, parts of these sentences were meaningful, but as a whole it was very difficult to make any logic out of the sentence. We tried to do this multiple times, and we observed that no matter what the tweet structure was, the chances of the tweet generated being meaningful and semantically sound depended on what words were chosen to fill in the tags. Since the words chosen to fill in the symbols for these tags were chosen manually, they did not end up being coherent when placed in sentences. Also, since our approach worked by providing a structure, containing tags, for Tracery to fill in, relative positioning of words and use of different types of words together was not something that we could enforce in our tweet generator.
+Some sample tweets are given below:
+\begin{itemize}
+    \item{\textit{an enemy with weak homes and couches laughes finished with  a computer console. Clockwork Empires collect by dull computer RPG}}
+    \item{\textit{home RPG first-person shooter couch... great Titanfall 2 sweet}}
+    \item{\textit{sweet enemies finishes  an enemy ally Titanfall 2 gathers}}
+\end{itemize}

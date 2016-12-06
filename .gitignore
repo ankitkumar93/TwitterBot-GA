@@ -9,3 +9,7 @@ tracery/
 log
 *.sty
 *.bst
+*.bbl
+*.blg
+*.dvi
+*.aux
